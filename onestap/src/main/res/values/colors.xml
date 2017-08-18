@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Stone - All Rights Reserved
+  ~ Unauthorized copying of this file, via any medium is strictly prohibited
+  ~ Proprietary and confidential
+  ~
+  -->
+
+<resources>
+
+    <color name="black">#003920</color>
+    <color name="gray_light">#5d6569</color>
+    <color name="gray_dark">#a9a9ad</color>
+    <color name="green_light">#92c83e</color>
+    <color name="green_normal">#0db14b</color>
+    <color name="green_dark">#003920</color>
+
+</resources>
