@@ -9,6 +9,7 @@ package com.onestap.onestap;
 
 import com.onestap.onestap.core.model.domain.enumerator.OSTEnvironment;
 import com.onestap.onestap.core.util.StringUtil;
+import com.onestap.onestap.profile.model.domain.entities.TempProfile;
 
 import java.util.UUID;
 
@@ -26,11 +27,13 @@ public class OSTConfiguration {
     private String schema;
     private String clientSecret;
     private String fingerPrintID;
-    private String fingerPrintSessionId;
 
     private String dataKey;
 
+    private TempProfile pendingProfile;
+
     private OSTEnvironment environment;
+
 
 
     public OSTConfiguration() {
@@ -77,58 +80,22 @@ public class OSTConfiguration {
         return fingerPrintID;
     }
 
-    String getFingerPrintSessionId() {
-        if (StringUtil.isEmptyOrNull(fingerPrintSessionId)) {
-            fingerPrintSessionId = UUID.randomUUID().toString();
-        }
-        return fingerPrintSessionId;
-    }
-
     OSTEnvironment getEnvironment() {
         if(environment == null)
             throw new RuntimeException("Environment not defined");
         return environment;
     }
 
-     String getLoginUrl(){
-        switch (this.getEnvironment()){
-//            case SANDBOX:
-//                return BuildConfig.FLIP_LOGIN_SANDBOX;
-//            case PRODUCTION:
-//                return BuildConfig.FLIP_LOGIN_PRODUCTION;
-            default:
-                throw new RuntimeException("Environment not configured to get base url");
-        }
-    }
-
-    String getBaseApiUrl(){
-        switch (this.getEnvironment()){
-//            case SANDBOX:
-//                return BuildConfig.API_BASE_URL_SANDBOX;
-//            case PRODUCTION:
-//                return BuildConfig.API_BASE_URL_SANDBOX;
-            default:
-                throw new RuntimeException("Environment not configured to get base url");
-        }
-    }
-
-    String getPrivateApiUrl(){
-        switch (this.getEnvironment()){
-//            case SANDBOX:
-//                return BuildConfig.PRIVATE_API_SANDBOX;
-//            case PRODUCTION:
-//                return BuildConfig.PRIVATE_API_PRODUCTION;
-            default:
-                throw new RuntimeException("Environment not configured to get private url");
-        }
-    }
-
-
     String getDataKey() {
         if(dataKey == null){
             throw new RuntimeException("Data key not defined");
         }
         return dataKey;
+    }
+
+
+    public TempProfile getPendingProfile() {
+        return pendingProfile;
     }
 
     /*****
@@ -158,12 +125,12 @@ public class OSTConfiguration {
         this.fingerPrintID = fingerPrintID;
     }
 
-    public void setFingerPrintSessionId(String fingerPrintSessionId) {
-        this.fingerPrintSessionId = fingerPrintSessionId;
-    }
-
     public void setDataKey(String dataKey) {
         this.dataKey = dataKey;
+    }
+
+    public void setPendingProfile(TempProfile pendingProfile) {
+        this.pendingProfile = pendingProfile;
     }
 
     public void setEnvironment(OSTEnvironment environment) {

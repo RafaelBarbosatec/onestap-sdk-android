@@ -9,12 +9,13 @@ package com.onestap.onestap.auth.model.manager;
 
 import com.onestap.onestap.OST;
 import com.onestap.onestap.auth.model.domain.entities.AuthToken;
+import com.onestap.onestap.auth.presenter.contract.AuthContract;
 import com.onestap.onestap.auth.service.AuthService;
 import com.onestap.onestap.core.model.domain.boundary.CallbackBoundary;
-
+import com.onestap.onestap.core.model.domain.enumerator.Method;
+import com.onestap.onestap.core.model.domain.enumerator.Options;
+import com.onestap.onestap.core.model.manager.OSTBaseManager;
 import com.onestap.onestap.core.service.NetworkConnection;
-
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,16 +28,20 @@ import retrofit2.Response;
  * @email mrebelo@stone.com.br
  */
 
-public class AuthManager {
+public class AuthManager extends OSTBaseManager implements AuthContract.Manager {
 
     private AuthService service;
+    private CallbackBoundary callbackBoundary;
+
 
     public AuthManager() {
         service = NetworkConnection.retrofit(OST.getInstance().getBaseApiUrl()).create(AuthService.class);
+        options.put(Options.REDIRECT_URI.toString(), OST.getInstance().getSchema() + "://" + OST.getInstance().getHost());
     }
 
 
-    public void request(Map<String, String> options, final CallbackBoundary callbackBoundary){
+    @Override
+    public void request(){
         service.request(options).enqueue(new Callback<AuthToken>() {
             @Override
             public void onResponse(Call<AuthToken> call, Response<AuthToken> response) {
@@ -53,4 +58,43 @@ public class AuthManager {
             }
         });
     }
+
+
+
+    @Override
+    public void requestToken(String authCode, CallbackBoundary callbackBoundary) {
+        this.callbackBoundary = callbackBoundary;
+        options.put(Options.AUTHORIZATION_CODE.toString(), authCode);
+        options.put(Options.GRANT_TYPE.toString(), Method.AUTHORIZATION_CODE.name());
+
+        request();
+    }
+
+    @Override
+    public void refreshToken(AuthToken token, CallbackBoundary callbackBoundary) {
+        this.callbackBoundary = callbackBoundary;
+        options.put(Options.REFRESH_TOKEN.toString(), token.getRefreshToken());
+        options.put(Options.GRANT_TYPE.toString(), Method.REFRESH_TOKEN.name());
+
+        request();
+    }
+
+    @Override
+    public void verifyToken(AuthToken token, CallbackBoundary callbackBoundary) {
+        this.callbackBoundary = callbackBoundary;
+        options.put(Options.ACCESS_TOKEN.toString(), token.getAccessToken());
+        options.put(Options.GRANT_TYPE.toString(), Method.VERIFY_TOKEN.name());
+
+        request();
+    }
+
+    @Override
+    public void revokeToken(AuthToken token, CallbackBoundary callbackBoundary) {
+        this.callbackBoundary = callbackBoundary;
+        options.put(Options.ACCESS_TOKEN.toString(), token.getAccessToken());
+        options.put(Options.GRANT_TYPE.toString(), Method.REVOKE_TOKEN.toString());
+
+        request();
+    }
+
 }

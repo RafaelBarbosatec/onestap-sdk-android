@@ -21,11 +21,8 @@ import java.util.Map;
 
 public abstract class BaseUseCase {
 
-    protected abstract void request();
-
 
     protected Map<String, String> options;
-    protected CallbackBoundary callbackBoundary;
 
     protected BaseUseCase() {
         options = new HashMap<>();

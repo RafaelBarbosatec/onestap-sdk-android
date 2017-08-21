@@ -1,0 +1,55 @@
+/*
+ * Copyright (c) Stone - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ *
+ */
+
+package com.onestap.onestap.login.presenter;
+
+import android.content.Context;
+
+import com.onestap.onestap.auth.model.domain.entities.AuthToken;
+import com.onestap.onestap.auth.model.usecase.AuthUseCase;
+import com.onestap.onestap.auth.presenter.OSTAuth;
+import com.onestap.onestap.core.model.domain.boundary.AuthCallback;
+import com.onestap.onestap.core.model.manager.LocalDataManager;
+import com.onestap.onestap.core.presenter.OSTBasePresenter;
+import com.onestap.onestap.core.presenter.contract.LocalDataManagerContract;
+import com.onestap.onestap.login.presenter.contract.LoginContract;
+
+/**
+ * Created on 21/08/2017
+ *
+ * @author Marcos Gribel
+ * @email mrebelo@stone.com.br
+ */
+
+public class LoginPresenter extends OSTBasePresenter<LoginContract.View> implements LoginContract.Presenter {
+
+    private AuthUseCase authUseCase;
+    private LocalDataManagerContract localManager;
+    private Context context;
+
+    public LoginPresenter(Context context) {
+        this.context = context;
+        this.authUseCase = new AuthUseCase(context);
+        this.localManager = new LocalDataManager(context);
+    }
+
+    @Override
+    public void loadCredentials(String authCode) {
+        new OSTAuth(context).requestToken(authCode, new AuthCallback() {
+            @Override
+            public void success(AuthToken response) {
+                getView().loginWithSuccess(response);
+            }
+
+            @Override
+            public void error(Throwable e) {
+                e.printStackTrace();
+                getView().loginFailed(e);
+            }
+        });
+    }
+}

@@ -23,13 +23,14 @@ android {
         buildConfigField("String", "STATE", '"${state}"')
         buildConfigField("String", "DATA_KEY", '"${data_key}"')
 
+        buildConfigField("String", "PARAM_DATA_KEY", '"&data_key=${data_key}"')
 
-        buildConfigField("String", "FLIP_LOGIN_URL", '"${uri}/?client_id=${key}&redirect_uri=${schema}://${host}&response_type=code&state=${state}&data_key=${data_key}"')
+        buildConfigField("String", "FLIP_LOGIN_URL", '"${uri}/?client_id=${key}&redirect_uri=${schema}://${host}&response_type=code&state=${state}"')
 
 //      PRODUCTION
         buildConfigField("String", "BASE_API_URL", '"https://auth.flipconnect.io"')
         buildConfigField("String", "PRIVATE_API_URL", '"https://api.flipconnect.io"')
-        buildConfigField("String", "SIGNIN_API_URL", '"https://api.flipconnect.io"')
+        buildConfigField("String", "SIGNIN_API_URL", '"https://signin.flipconnect.io"')
 
 //      SANDBOX
         buildConfigField("String", "BASE_API_URL_SANDBOX", '"https://auth-sandbox.flipconnect.io"')
@@ -47,15 +48,11 @@ android {
         }
 
         debug {
-            buildConfigField("String", "API_BASE_URL", '"https://auth-sandbox.flipconnect.io"')
-            buildConfigField("String", "PRIVATE_API", '"https://api-sandbox.flipconnect.io"')
-            buildConfigField("String", "FLIP_LOGIN", '"https://signin-sandbox.flipconnect.io/?client_id=${key}&redirect_uri=${schema}://${host}&response_type=code&state=${state}&data_key=${data_key}"')
+
         }
 
         staging {
-            buildConfigField("String", "API_BASE_URL", '"https://auth-sandbox.flipconnect.io"')
-            buildConfigField("String", "PRIVATE_API", '"https://api-sandbox.flipconnect.io"')
-            buildConfigField("String", "FLIP_LOGIN", '"https://signin-sandbox.flipconnect.io/?client_id=${key}&redirect_uri=${schema}://${host}&response_type=code&state=${state}&data_key=${data_key}"')
+
         }
     }
 }
@@ -86,12 +83,12 @@ dependencies {
     compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     compile "com.github.bumptech.glide:glide:$glide_version"
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
-    compile 'com.github.jgabrielfreitas:DataController:v1.3.3'
 
-    testCompile 'junit:junit:4.12'
 
 
     compile fileTree(dir: 'libs', include: '*.jar')
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.github.jgabrielfreitas:DataController:v1.3.3'
+    testCompile 'junit:junit:4.12'
 }

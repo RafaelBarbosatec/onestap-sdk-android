@@ -14,8 +14,10 @@ import com.onestap.onestap.core.model.domain.enumerator.OSTEnvironment;
 import static com.onestap.onestap.BuildConfig.BASE_API_URL;
 import static com.onestap.onestap.BuildConfig.BASE_API_URL_SANDBOX;
 import static com.onestap.onestap.BuildConfig.DATA_KEY;
+import static com.onestap.onestap.BuildConfig.FLIP_LOGIN_URL;
 import static com.onestap.onestap.BuildConfig.HOST;
 import static com.onestap.onestap.BuildConfig.KEY;
+import static com.onestap.onestap.BuildConfig.PARAM_DATA_KEY;
 import static com.onestap.onestap.BuildConfig.PRIVATE_API_URL;
 import static com.onestap.onestap.BuildConfig.PRIVATE_API_URL_SANDBOX;
 import static com.onestap.onestap.BuildConfig.SCHEMA;
@@ -34,26 +36,14 @@ import static com.onestap.onestap.BuildConfig.URI;
 public final class UrlUtil {
 
 
-    public static String getLoginUrl(OSTEnvironment environment){
-        switch (environment){
+    public static String getLoginUrl(OSTEnvironment environment) {
+        switch (environment) {
             case SANDBOX: {
-                return OST.getInstance().getLoginUrl()
-                        .replace(URI, SIGNIN_API_URL_SANDBOX)
-                        .replace(KEY, OST.getInstance().getClientId())
-                        .replace(HOST, OST.getInstance().getHost())
-                        .replace(SCHEMA, OST.getInstance().getSchema())
-                        .replace(STATE, OST.getInstance().getFingerPrintSessionId())
-                        .replace(DATA_KEY, OST.getInstance().getDataKey() == null ? "" : OST.getInstance().getDataKey());
+                return buildLoginUrl(SIGNIN_API_URL_SANDBOX);
             }
 
             case PRODUCTION: {
-                return OST.getInstance().getLoginUrl()
-                        .replace(URI, SIGNIN_API_URL)
-                        .replace(KEY, OST.getInstance().getClientId())
-                        .replace(HOST, OST.getInstance().getHost())
-                        .replace(SCHEMA, OST.getInstance().getSchema())
-                        .replace(STATE, OST.getInstance().getFingerPrintSessionId())
-                        .replace(DATA_KEY, OST.getInstance().getDataKey() == null ? "" : OST.getInstance().getDataKey());
+                return buildLoginUrl(SIGNIN_API_URL);
             }
             default: {
                 throw new RuntimeException("Environment no defined!");
@@ -62,8 +52,8 @@ public final class UrlUtil {
     }
 
 
-    public static String getBaseUrl(OSTEnvironment environment){
-        switch (environment){
+    public static String getBaseUrl(OSTEnvironment environment) {
+        switch (environment) {
             case SANDBOX: {
                 return BASE_API_URL_SANDBOX;
             }
@@ -76,8 +66,8 @@ public final class UrlUtil {
     }
 
 
-    public static String getPrivateUrl(OSTEnvironment environment){
-        switch (environment){
+    public static String getPrivateUrl(OSTEnvironment environment) {
+        switch (environment) {
             case SANDBOX: {
                 return PRIVATE_API_URL_SANDBOX;
             }
@@ -86,6 +76,31 @@ public final class UrlUtil {
             }
             default:
                 throw new RuntimeException("Environment no defined!");
+        }
+    }
+
+    protected static String buildLoginUrl(String uri) {
+        StringBuilder builder = new StringBuilder(
+                FLIP_LOGIN_URL
+                        .replace(URI, uri)
+                        .replace(KEY, OST.getInstance().getClientId())
+                        .replace(HOST, OST.getInstance().getHost())
+                        .replace(SCHEMA, OST.getInstance().getSchema())
+                        .replace(STATE, OST.getInstance().getFingerPrintSessionId())
+        );
+
+        if (OST.getInstance().getTempProfile() != null) {
+
+            return builder
+                    .append(
+                            PARAM_DATA_KEY
+                                    .replace(
+                                            DATA_KEY,
+                                            OST.getInstance().getDataKey() == null ? "" : OST.getInstance().getDataKey()
+                                    )
+                    ).toString();
+        } else {
+            return builder.toString();
         }
     }
 

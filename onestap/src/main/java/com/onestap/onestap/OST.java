@@ -9,8 +9,15 @@ package com.onestap.onestap;
 
 import android.content.Context;
 
+import com.onestap.onestap.auth.model.domain.entities.AuthToken;
 import com.onestap.onestap.core.model.domain.enumerator.OSTEnvironment;
+import com.onestap.onestap.core.model.domain.enumerator.Options;
+import com.onestap.onestap.core.model.manager.LocalDataManager;
+import com.onestap.onestap.core.util.StringUtil;
 import com.onestap.onestap.core.util.UrlUtil;
+import com.onestap.onestap.profile.model.domain.entities.TempProfile;
+
+import java.util.UUID;
 
 /**
  * Created on 17/08/2017
@@ -23,7 +30,11 @@ public class OST {
     private static final OST INSTANCE = new OST();
 
     private Context context;
+    private LocalDataManager localDataManager;
     private OSTConfiguration configuration;
+
+    private String fingerPrintSessionId;
+
 
     /**
      *
@@ -37,6 +48,7 @@ public class OST {
     public static void initializer(Context context, OSTConfiguration configuration){
         getInstance().context = context;
         getInstance().configuration = configuration;
+        getInstance().localDataManager = new LocalDataManager(context);
     }
 
 
@@ -61,7 +73,10 @@ public class OST {
     }
 
     public String getFingerPrintSessionId() {
-        return configuration.getFingerPrintSessionId();
+        if (StringUtil.isEmptyOrNull(fingerPrintSessionId)) {
+            fingerPrintSessionId = UUID.randomUUID().toString();
+        }
+        return fingerPrintSessionId;
     }
 
     public String getFingerPrintID(){
@@ -76,9 +91,14 @@ public class OST {
         return configuration;
     }
 
-//    public AuthToken getToken() {
-//        return localManager.getOauth(TokenType.ACCESS_TOKEN);
-//    }
+    public AuthToken getToken() {
+        return localDataManager.get(Options.ACCESS_TOKEN.name(), AuthToken.class);
+    }
+
+    public TempProfile getTempProfile() {
+        return configuration.getPendingProfile();
+    }
+
 
     public OSTEnvironment getEnvironment(){
         return configuration.getEnvironment();

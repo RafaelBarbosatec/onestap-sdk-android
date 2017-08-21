@@ -5,7 +5,7 @@
  *
  */
 
-package com.onestap.onestap.core.ui.widget;
+package com.onestap.onestap.core.view.ui.widget;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatButton;

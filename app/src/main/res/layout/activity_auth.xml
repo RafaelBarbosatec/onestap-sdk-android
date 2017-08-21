@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Stone - All Rights Reserved
+  ~ Unauthorized copying of this file, via any medium is strictly prohibited
+  ~ Proprietary and confidential
+  ~
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.onestap.onestapsdk.AuthActivity">
+
+
+
+    <EditText
+        android:id="@+id/txt_auth_token"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:textSize="16sp"
+        android:minLines="10"
+        />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_verify_token"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Verify Token"
+        />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_refresh_token"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Refresh Token"
+        />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_revoke_token"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Revoke Token"
+        />
+
+</LinearLayout>

@@ -7,14 +7,17 @@
 
 package com.onestap.onestap.auth.model.usecase;
 
+import android.content.Context;
+
 import com.onestap.onestap.OST;
-import com.onestap.onestap.auth.AuthContract;
 import com.onestap.onestap.auth.model.domain.entities.AuthToken;
 import com.onestap.onestap.auth.model.manager.AuthManager;
-import com.onestap.onestap.auth.service.AuthService;
+import com.onestap.onestap.auth.presenter.contract.AuthContract;
+import com.onestap.onestap.core.model.domain.boundary.AuthCallback;
 import com.onestap.onestap.core.model.domain.boundary.CallbackBoundary;
-import com.onestap.onestap.core.model.domain.enumerator.Method;
 import com.onestap.onestap.core.model.domain.enumerator.Options;
+import com.onestap.onestap.core.model.manager.FingerPrintManager;
+import com.onestap.onestap.core.model.manager.LocalDataManager;
 import com.onestap.onestap.core.model.usecase.BaseUseCase;
 
 /**
@@ -24,55 +27,80 @@ import com.onestap.onestap.core.model.usecase.BaseUseCase;
  * @email mrebelo@stone.com.br
  */
 
-public class AuthUseCase extends BaseUseCase implements AuthContract {
+public class AuthUseCase extends BaseUseCase implements AuthContract.UseCase {
 
+
+    private Context context;
+    private LocalDataManager localManager;
+    private AuthToken token;
     private AuthManager service;
 
-    @Override
-    protected void request() {
-        service.request(options, callbackBoundary);
-    }
-
-    public AuthUseCase() {
+    public AuthUseCase(Context context) {
         super();
-        service = new AuthManager();
+        this.context = context;
+        this.localManager = new LocalDataManager(context);
+        this.token = localManager.get(Options.ACCESS_TOKEN.toString(), AuthToken.class);
+
+        this.service = new AuthManager();
         options.put(Options.REDIRECT_URI.toString(), OST.getInstance().getSchema() + "://" + OST.getInstance().getHost());
     }
 
     @Override
-    public void requestToken(String authCode, CallbackBoundary callbackBoundary) {
-        this.callbackBoundary = callbackBoundary;
-        options.put(Options.AUTHORIZATION_CODE.toString(), authCode);
-        options.put(Options.GRANT_TYPE.toString(), Method.AUTHORIZATION_CODE.name());
-        service.request(options, callbackBoundary);
-        request();
+    public void requestToken(String authCode, final CallbackBoundary callbackBoundary) {
+        service.requestToken(authCode, new AuthCallback() {
+            @Override
+            public void success(AuthToken response) {
+                callbackBoundary.success(response);
+                localManager.save(response, Options.ACCESS_TOKEN.toString());
+                FingerPrintManager.sendFingerPrint(context, response);
+            }
+
+            @Override
+            public void error(Throwable e) {
+                callbackBoundary.error(e);
+            }
+        });
     }
 
     @Override
-    public void refreshToken(AuthToken token, CallbackBoundary callbackBoundary) {
-        this.callbackBoundary = callbackBoundary;
-        options.put(Options.REFRESH_TOKEN.toString(), token.getRefreshToken());
-        options.put(Options.GRANT_TYPE.toString(), Method.REFRESH_TOKEN.name());
-        service.request(options, callbackBoundary);
-        request();
+    public void refreshToken(final CallbackBoundary callbackBoundary) {
+        if (token == null) {
+            callbackBoundary.error(new Throwable("Token not found"));
+        } else {
+            service.refreshToken(token, callbackBoundary);
+            FingerPrintManager.sendFingerPrint(context, token);
+        }
     }
 
     @Override
-    public void verifyToken(AuthToken token, CallbackBoundary callbackBoundary) {
-        this.callbackBoundary = callbackBoundary;
-        options.put(Options.ACCESS_TOKEN.toString(), token.getAccessToken());
-        options.put(Options.GRANT_TYPE.toString(), Method.VERIFY_TOKEN.name());
-        service.request(options, callbackBoundary);
-        request();
+    public void verifyToken(final CallbackBoundary callbackBoundary) {
+        if (token == null) {
+            callbackBoundary.error(new Throwable("Token not found"));
+        } else {
+            service.verifyToken(token, callbackBoundary);
+            FingerPrintManager.sendFingerPrint(context, token);
+        }
     }
 
     @Override
-    public void revokeToken(AuthToken token, CallbackBoundary callbackBoundary) {
-        this.callbackBoundary = callbackBoundary;
-        options.put(Options.ACCESS_TOKEN.toString(), token.getAccessToken());
-        options.put(Options.GRANT_TYPE.toString(), Method.REVOKE_TOKEN.toString());
-        service.request(options, callbackBoundary);
-        request();
+    public void revokeToken(final CallbackBoundary callbackBoundary) {
+        if (token == null) {
+            callbackBoundary.error(new Throwable("Token not found"));
+        } else {
+            service.revokeToken(token, new CallbackBoundary<AuthToken>() {
+                @Override
+                public void success(AuthToken response) {
+                    callbackBoundary.success(response);
+                    localManager.remove(Options.ACCESS_TOKEN.toString());
+                    FingerPrintManager.sendFingerPrint(context, response);
+                }
+
+                @Override
+                public void error(Throwable e) {
+                    callbackBoundary.error(e);
+                }
+            });
+        }
     }
 
 

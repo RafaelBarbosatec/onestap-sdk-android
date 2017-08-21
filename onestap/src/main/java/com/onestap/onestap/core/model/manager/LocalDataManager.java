@@ -11,12 +11,13 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.jgabrielfreitas.datacontroller.DataController;
+import com.onestap.onestap.core.presenter.contract.LocalDataManagerContract;
 
 /**
  * Created by jcosilva on 6/9/2017.
  */
 
-public class LocalDataManager {
+public class LocalDataManager implements LocalDataManagerContract {
 
     private DataController dataController;
 
@@ -24,16 +25,19 @@ public class LocalDataManager {
         this.dataController = new DataController(context);
     }
 
-
+    @Override
     public void save(Object value, String key){
         dataController.writeData(key, new Gson().toJson(value));
     }
 
+    @Override
     public void remove(String key){
         dataController.remove(key);
     }
 
+    @Override
     public <T> T get(String key, Class<T> clazz){
         return new Gson().fromJson(dataController.readStringData(key), clazz);
     }
+
 }

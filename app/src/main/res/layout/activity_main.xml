@@ -8,12 +8,13 @@
     tools:context="com.onestap.onestapsdk.MainActivity">
 
 
-    <com.onestap.onestap.core.ui.widget.OSTAuthButton
+    <com.onestap.onestap.core.view.ui.widget.OSTAuthButton
+        android:id="@+id/btn_auth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Insert your test here"
+        android:text="Insert your text here"
         />
 
 </RelativeLayout>
