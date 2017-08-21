@@ -14,6 +14,7 @@ import com.onestap.onestap.auth.model.usecase.AuthUseCase;
 import com.onestap.onestap.core.model.domain.boundary.AuthCallback;
 import com.onestap.onestap.core.model.domain.boundary.CallbackBoundary;
 import com.onestap.onestap.core.model.domain.enumerator.Options;
+import com.onestap.onestap.core.model.manager.FingerPrintManager;
 import com.onestap.onestap.core.model.manager.LocalDataManager;
 import com.onestap.onestap.core.util.StringUtil;
 
@@ -48,7 +49,7 @@ public class OSTAuth {
                 public void success(AuthToken response) {
                     callbackBoundary.success(response);
                     localManager.save(response, Options.ACCESS_TOKEN.toString());
-//                    FingerPrintManager.sendFingerPrint(context, response);
+                    FingerPrintManager.sendFingerPrint(context, response);
                 }
 
                 @Override
@@ -64,7 +65,7 @@ public class OSTAuth {
             callbackBoundary.error(new Throwable("Token not found"));
         } else {
             useCase.refreshToken(token, callbackBoundary);
-//            FingerPrintManager.sendFingerPrint(context, token);
+            FingerPrintManager.sendFingerPrint(context, token);
         }
     }
 
@@ -73,7 +74,7 @@ public class OSTAuth {
             callbackBoundary.error(new Throwable("Token not found"));
         } else {
             useCase.verifyToken(token, callbackBoundary);
-//            FingerPrintManager.sendFingerPrint(context, token);
+            FingerPrintManager.sendFingerPrint(context, token);
         }
     }
 
