@@ -5,15 +5,16 @@
  *
  */
 
-package com.onestap.onestap.model.domain.entities;
+package com.onestap.onestap.auth.model.domain.entities;
 
 
+import com.onestap.onestap.core.model.domain.entities.BaseResponse;
 
 /**
  * Created by jcosilva on 6/8/2017.
  */
 
-public class OauthToken extends BaseResponse {
+public class AuthToken extends BaseResponse {
     private String accessToken;
     private String tokenCreateDate;
     private String tokenExpiryDate;
@@ -62,7 +63,7 @@ public class OauthToken extends BaseResponse {
 
     @Override
     public String toString() {
-        return "OauthToken{" +
+        return "AuthToken{" +
                 "accessToken=" + accessToken +
                 ", tokenCreateDate=" + tokenCreateDate +
                 ", tokenExpiryDate=" + tokenExpiryDate +

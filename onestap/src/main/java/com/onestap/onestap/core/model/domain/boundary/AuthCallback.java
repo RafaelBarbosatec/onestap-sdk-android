@@ -5,16 +5,16 @@
  *
  */
 
-package com.onestap.onestap.model.domain.boundary;
+package com.onestap.onestap.core.model.domain.boundary;
 
 
-import com.onestap.onestap.model.domain.entities.OauthToken;
+import com.onestap.onestap.auth.model.domain.entities.AuthToken;
 
 /**
  * Created by JGabrielFreitas on 12/04/17.
  */
 
-public interface AccountCallback extends CallbackBoundary<OauthToken> {
+public interface AuthCallback extends CallbackBoundary<AuthToken> {
 
 
 }

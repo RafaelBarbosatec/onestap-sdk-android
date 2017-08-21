@@ -5,7 +5,7 @@
  *
  */
 
-package com.onestap.onestap.model.domain.boundary;
+package com.onestap.onestap.core.model.domain.boundary;
 
 /**
  * Created by JGabrielFreitas on 12/04/17.

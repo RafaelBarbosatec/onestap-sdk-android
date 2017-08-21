@@ -5,7 +5,7 @@
  *
  */
 
-package com.onestap.onestap.model.domain.entities;
+package com.onestap.onestap.core.model.domain.entities;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ import java.util.List;
  * Created by ltorres on 19/07/2017.
  */
 
-abstract class BaseResponse {
-    private Boolean success = false;
-    private List<OperationReport> operationReport;
+public abstract class BaseResponse {
+    protected Boolean success = false;
+    protected List<OperationReport> operationReport;
 
     public Boolean hasSuccess() {
         return success;

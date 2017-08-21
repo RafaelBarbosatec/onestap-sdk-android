@@ -5,12 +5,12 @@
  *
  */
 
-package com.onestap.onestap.model.domain.entities;
+package com.onestap.onestap.core.model.domain.entities;
 
-public class OperationReport {
+class OperationReport {
 
-private String field;
-private String message;
+protected String field;
+protected String message;
 
 public String getField() {
 return field;

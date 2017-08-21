@@ -1,1 +1,1 @@
-include ':app', ':onestap', ':fplib-release'
+include ':app', ':onestap'

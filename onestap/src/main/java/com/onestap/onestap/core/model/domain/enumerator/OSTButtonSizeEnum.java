@@ -5,13 +5,13 @@
  *
  */
 
-package com.onestap.onestap.model.domain.enumerator;
+package com.onestap.onestap.core.model.domain.enumerator;
 
 /**
  * Created on 17/08/2017
  *
- * @author: Marcos Gribel
- * @email: mrebelo@stone.com.br
+ * @author Marcos Gribel
+ * @email mrebelo@stone.com.br
  */
 
 public enum OSTButtonSizeEnum {
