@@ -2,10 +2,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
 group 'com.onestap'
+version '0.1.0'
+
 
 android {
-    publishNonDefault true
-
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
 
@@ -14,7 +14,7 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
 
@@ -51,18 +51,8 @@ android {
         }
 
         debug {
-            debuggable true
-        }
-
-        staging {
-            debuggable true
-
-            buildConfigField("String", "BASE_API_URL", '"http://dlp-qrservices.cloudapp.net:20112"')
-            buildConfigField("String", "PRIVATE_API_URL", '"http://dlp-qrservices.cloudapp.net:20115"')
-            buildConfigField("String", "SIGNIN_API_URL", '"http://flipconnect-signin-staging.herokuapp.com/?client_id=${key}&redirect_uri=${schema}://${host}&response_type=code&state=${state}&data_key=${data_key}"')
 
         }
-
 
     }
 
@@ -80,12 +70,11 @@ ext {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
-
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
+    testCompile 'junit:junit:4.12'
 
     compile "com.android.support:appcompat-v7:$android_version"
     compile "com.android.support:recyclerview-v7:$android_version"
@@ -97,10 +86,10 @@ dependencies {
     compile "com.github.bumptech.glide:glide:$glide_version"
 
 
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.github.jgabrielfreitas:DataController:v1.3.3'
+
 
 
     compile fileTree(dir: 'libs', include: '*.jar')
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.github.jgabrielfreitas:DataController:v1.3.3'
-    testCompile 'junit:junit:4.12'
 }
