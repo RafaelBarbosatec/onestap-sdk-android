@@ -27,27 +27,27 @@ import com.onestap.onestap.core.model.usecase.BaseUseCase;
  * @email mrebelo@stone.com.br
  */
 
-public class AuthUseCase extends BaseUseCase implements AuthContract.UseCase {
+public final class AuthUseCase extends BaseUseCase implements AuthContract.UseCase {
 
 
     private Context context;
     private LocalDataManager localManager;
     private AuthToken token;
-    private AuthManager service;
+    private AuthManager manager;
 
     public AuthUseCase(Context context) {
         super();
         this.context = context;
         this.localManager = new LocalDataManager(context);
         this.token = localManager.get(Options.ACCESS_TOKEN.toString(), AuthToken.class);
+        this.manager = new AuthManager();
 
-        this.service = new AuthManager();
         options.put(Options.REDIRECT_URI.toString(), OST.getInstance().getSchema() + "://" + OST.getInstance().getHost());
     }
 
     @Override
     public void requestToken(String authCode, final CallbackBoundary callbackBoundary) {
-        service.requestToken(authCode, new AuthCallback() {
+        manager.requestToken(authCode, new AuthCallback() {
             @Override
             public void success(AuthToken response) {
                 callbackBoundary.success(response);
@@ -67,7 +67,7 @@ public class AuthUseCase extends BaseUseCase implements AuthContract.UseCase {
         if (token == null) {
             callbackBoundary.error(new Throwable("Token not found"));
         } else {
-            service.refreshToken(token, callbackBoundary);
+            manager.refreshToken(token, callbackBoundary);
             FingerPrintManager.sendFingerPrint(context, token);
         }
     }
@@ -77,7 +77,7 @@ public class AuthUseCase extends BaseUseCase implements AuthContract.UseCase {
         if (token == null) {
             callbackBoundary.error(new Throwable("Token not found"));
         } else {
-            service.verifyToken(token, callbackBoundary);
+            manager.verifyToken(token, callbackBoundary);
             FingerPrintManager.sendFingerPrint(context, token);
         }
     }
@@ -87,7 +87,7 @@ public class AuthUseCase extends BaseUseCase implements AuthContract.UseCase {
         if (token == null) {
             callbackBoundary.error(new Throwable("Token not found"));
         } else {
-            service.revokeToken(token, new CallbackBoundary<AuthToken>() {
+            manager.revokeToken(token, new CallbackBoundary<AuthToken>() {
                 @Override
                 public void success(AuthToken response) {
                     callbackBoundary.success(response);

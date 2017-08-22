@@ -5,7 +5,7 @@
  *
  */
 
-package com.onestap.onestap.profile.model.domain.entities;
+package com.onestap.onestap.user.model.domain.entities;
 
 
 import com.onestap.onestap.core.model.domain.entities.BaseResponse;

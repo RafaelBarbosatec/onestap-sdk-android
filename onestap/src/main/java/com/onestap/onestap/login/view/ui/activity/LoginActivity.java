@@ -29,6 +29,18 @@ public final class LoginActivity extends OSTBaseActivity implements LoginContrac
     private String uuid;
 
     @Override
+    protected String urlToLoad() {
+        return OST.getInstance().getLoginUrl();
+    }
+
+    @Override
+    protected WebViewClient client() {
+        uuid = UUID.randomUUID().toString();
+        return new LoginWebViewClient(uuid, authCallback);
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -41,23 +53,14 @@ public final class LoginActivity extends OSTBaseActivity implements LoginContrac
             presenter.loadCredentials(authCode);
         } else {
             if (OST.getInstance().getTempProfile() != null) {
-//                presenter.savePendingProfile(OST.getInstance().getTempProfile());
+                presenter.saveTemporaryProfile(OST.getInstance().getTempProfile());
             } else {
                 loadWebView();
             }
         }
     }
 
-    @Override
-    protected String urlToLoad() {
-        return OST.getInstance().getLoginUrl();
-    }
 
-    @Override
-    protected WebViewClient client() {
-        uuid = OST.getInstance().getFingerPrintSessionId();
-        return new LoginWebViewClient(uuid, authCallback);
-    }
 
     @Override
     public void goToWebView() {

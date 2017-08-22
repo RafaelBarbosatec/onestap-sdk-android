@@ -5,7 +5,7 @@
  *
  */
 
-package com.onestap.onestap.profile.model.domain.entities;
+package com.onestap.onestap.user.model.domain.entities;
 
 /**
  * Created by ltorres on 28/07/2017.

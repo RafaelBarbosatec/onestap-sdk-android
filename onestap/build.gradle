@@ -4,6 +4,8 @@ apply plugin: 'com.github.dcendents.android-maven'
 group 'com.onestap'
 
 android {
+    publishNonDefault true
+
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
 
@@ -14,6 +16,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
 
         buildConfigField("String", "URI", '"${uri}"')
 
@@ -48,13 +51,22 @@ android {
         }
 
         debug {
-
+            debuggable true
         }
 
         staging {
+            debuggable true
+
+            buildConfigField("String", "BASE_API_URL", '"http://dlp-qrservices.cloudapp.net:20112"')
+            buildConfigField("String", "PRIVATE_API_URL", '"http://dlp-qrservices.cloudapp.net:20115"')
+            buildConfigField("String", "SIGNIN_API_URL", '"http://flipconnect-signin-staging.herokuapp.com/?client_id=${key}&redirect_uri=${schema}://${host}&response_type=code&state=${state}&data_key=${data_key}"')
 
         }
+
+
     }
+
+
 }
 
 

@@ -10,7 +10,7 @@ package com.onestap.onestap.auth.presenter;
 import android.content.Context;
 
 import com.onestap.onestap.auth.model.usecase.AuthUseCase;
-import com.onestap.onestap.core.model.domain.boundary.AuthCallback;
+import com.onestap.onestap.auth.presenter.contract.AuthContract;
 import com.onestap.onestap.core.model.domain.boundary.CallbackBoundary;
 
 /**
@@ -20,33 +20,34 @@ import com.onestap.onestap.core.model.domain.boundary.CallbackBoundary;
  * @email mrebelo@stone.com.br
  */
 
-public final class OSTAuth {
+public final class AuthPresenter implements AuthContract.Presenter {
 
     private Context context;
     private AuthUseCase useCase;
 
-    public OSTAuth(Context context) {
+    public AuthPresenter(Context context) {
         this.context = context;
         this.useCase = new AuthUseCase(context);
     }
 
-
-    public void requestToken(String authCode, final AuthCallback callbackBoundary) {
+    @Override
+    public void requestToken(String authCode, CallbackBoundary callbackBoundary) {
         useCase.requestToken(authCode, callbackBoundary);
     }
 
+    @Override
     public void refreshToken(CallbackBoundary callbackBoundary) {
         useCase.refreshToken(callbackBoundary);
     }
 
+    @Override
     public void verifyToken(CallbackBoundary callbackBoundary) {
         useCase.verifyToken(callbackBoundary);
     }
 
+    @Override
     public void revokeToken(final CallbackBoundary callbackBoundary) {
         useCase.revokeToken(callbackBoundary);
     }
-
-
 
 }

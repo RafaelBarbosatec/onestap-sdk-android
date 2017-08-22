@@ -9,6 +9,7 @@ package com.onestap.onestap.login.presenter.contract;
 
 import com.onestap.onestap.auth.model.domain.entities.AuthToken;
 import com.onestap.onestap.core.presenter.contract.OSTBaseContract;
+import com.onestap.onestap.user.model.domain.entities.TempProfile;
 
 /**
  * Created on 21/08/2017
@@ -31,7 +32,6 @@ public interface LoginContract {
     interface Presenter extends OSTBaseContract.Presenter<LoginContract.View> {
         void loadCredentials(String authCode);
 
-        // TODO: Implement temporary profile
-//        void savePendingProfile(TempProfile pendingProfile);
+        void saveTemporaryProfile(TempProfile tempProfile);
     }
 }

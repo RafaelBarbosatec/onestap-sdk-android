@@ -10,18 +10,21 @@ package com.onestap.onestapsdk;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.onestap.onestap.OST;
+import com.onestap.onestap.auth.OSTAuth;
 import com.onestap.onestap.auth.model.domain.entities.AuthToken;
-import com.onestap.onestap.auth.presenter.OSTAuth;
 import com.onestap.onestap.core.model.domain.boundary.AuthCallback;
 import com.onestap.onestap.core.model.domain.boundary.CallbackBoundary;
 
 public class AuthActivity extends AppCompatActivity {
+
+    static final String TAG = AuthActivity.class.getName();
 
     EditText editAuthToken;
     AppCompatButton btnVerify;
@@ -32,7 +35,6 @@ public class AuthActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
 
         btnVerify.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +48,7 @@ public class AuthActivity extends AppCompatActivity {
 
                     @Override
                     public void error(Throwable e) {
+                        Log.e(TAG, e.getMessage());
                         e.printStackTrace();
                     }
                 });
@@ -64,6 +67,7 @@ public class AuthActivity extends AppCompatActivity {
 
                     @Override
                     public void error(Throwable e) {
+                        Log.e(TAG, e.getMessage());
                         e.printStackTrace();
                     }
                 });
@@ -82,6 +86,7 @@ public class AuthActivity extends AppCompatActivity {
 
                     @Override
                     public void error(Throwable e) {
+                        Log.e(TAG, e.getMessage());
                         e.printStackTrace();
                     }
                 });
@@ -100,8 +105,6 @@ public class AuthActivity extends AppCompatActivity {
         btnVerify = (AppCompatButton) findViewById(R.id.btn_verify_token);
         btnRefresh = (AppCompatButton) findViewById(R.id.btn_refresh_token);
         btnRevoke = (AppCompatButton) findViewById(R.id.btn_revoke_token);
-
-
 
         setTextViewAuthToken(OST.getInstance().getToken());
     }

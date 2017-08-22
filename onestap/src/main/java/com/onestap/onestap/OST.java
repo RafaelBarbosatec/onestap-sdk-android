@@ -15,7 +15,7 @@ import com.onestap.onestap.core.model.domain.enumerator.Options;
 import com.onestap.onestap.core.model.manager.LocalDataManager;
 import com.onestap.onestap.core.util.StringUtil;
 import com.onestap.onestap.core.util.UrlUtil;
-import com.onestap.onestap.profile.model.domain.entities.TempProfile;
+import com.onestap.onestap.user.model.domain.entities.TempProfile;
 
 import java.util.UUID;
 
@@ -87,16 +87,13 @@ public class OST {
         return configuration.getDataKey();
     }
 
-    public OSTConfiguration getConnectConfigurations() {
-        return configuration;
-    }
 
     public AuthToken getToken() {
         return localDataManager.get(Options.ACCESS_TOKEN.name(), AuthToken.class);
     }
 
     public TempProfile getTempProfile() {
-        return configuration.getPendingProfile();
+        return configuration.getTempProfile();
     }
 
 

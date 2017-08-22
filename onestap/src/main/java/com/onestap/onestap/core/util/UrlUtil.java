@@ -13,6 +13,7 @@ import com.onestap.onestap.core.model.domain.enumerator.OSTEnvironment;
 
 import static com.onestap.onestap.BuildConfig.BASE_API_URL;
 import static com.onestap.onestap.BuildConfig.BASE_API_URL_SANDBOX;
+import static com.onestap.onestap.BuildConfig.BUILD_TYPE;
 import static com.onestap.onestap.BuildConfig.DATA_KEY;
 import static com.onestap.onestap.BuildConfig.FLIP_LOGIN_URL;
 import static com.onestap.onestap.BuildConfig.HOST;
@@ -37,29 +38,34 @@ public final class UrlUtil {
 
 
     public static String getLoginUrl(OSTEnvironment environment) {
-        switch (environment) {
-            case SANDBOX: {
-                return buildLoginUrl(SIGNIN_API_URL_SANDBOX);
-            }
+        if (BUILD_TYPE == "staging")
+            return SIGNIN_API_URL;
 
-            case PRODUCTION: {
+        switch (environment) {
+            case SANDBOX:
+                return buildLoginUrl(SIGNIN_API_URL_SANDBOX);
+
+            case PRODUCTION:
                 return buildLoginUrl(SIGNIN_API_URL);
-            }
-            default: {
+
+            default:
                 throw new RuntimeException("Environment no defined!");
-            }
         }
+
     }
 
 
     public static String getBaseUrl(OSTEnvironment environment) {
+        if(BUILD_TYPE == "staging")
+            return BASE_API_URL;
+
         switch (environment) {
-            case SANDBOX: {
+            case SANDBOX:
                 return BASE_API_URL_SANDBOX;
-            }
-            case PRODUCTION: {
+
+            case PRODUCTION:
                 return BASE_API_URL;
-            }
+
             default:
                 throw new RuntimeException("Environment no defined!");
         }
@@ -67,15 +73,19 @@ public final class UrlUtil {
 
 
     public static String getPrivateUrl(OSTEnvironment environment) {
+        if(BUILD_TYPE == "staging")
+            return PRIVATE_API_URL;
+
         switch (environment) {
-            case SANDBOX: {
+            case SANDBOX:
                 return PRIVATE_API_URL_SANDBOX;
-            }
-            case PRODUCTION: {
+
+            case PRODUCTION:
                 return PRIVATE_API_URL;
-            }
+
             default:
                 throw new RuntimeException("Environment no defined!");
+
         }
     }
 

@@ -1,18 +1,20 @@
 package com.onestap.onestapsdk;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
+import com.onestap.onestap.auth.OSTAuth;
 import com.onestap.onestap.auth.model.domain.entities.AuthToken;
-import com.onestap.onestap.auth.presenter.OSTAuth;
+import com.onestap.onestap.auth.view.ui.widget.OSTAuthButton;
 import com.onestap.onestap.core.model.domain.boundary.AuthCallback;
-import com.onestap.onestap.core.view.ui.widget.OSTAuthButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    OSTAuthButton mOSTAuthButton;
+    static final String TAG = MainActivity.class.getName();
 
+    OSTAuthButton mOSTAuthButton;
 
     @Override
     protected void onStart() {
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void error(Throwable e) {
+                Log.e(TAG, e.getMessage());
                 e.printStackTrace();
             }
         });
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void error(Throwable e) {
+                Log.e(TAG, e.getMessage());
                 e.printStackTrace();
             }
         });

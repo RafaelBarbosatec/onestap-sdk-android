@@ -7,6 +7,8 @@
 
 package com.onestap.onestap.auth.model.manager;
 
+import android.support.annotation.VisibleForTesting;
+
 import com.onestap.onestap.OST;
 import com.onestap.onestap.auth.model.domain.entities.AuthToken;
 import com.onestap.onestap.auth.presenter.contract.AuthContract;
@@ -16,6 +18,7 @@ import com.onestap.onestap.core.model.domain.enumerator.Method;
 import com.onestap.onestap.core.model.domain.enumerator.Options;
 import com.onestap.onestap.core.model.manager.OSTBaseManager;
 import com.onestap.onestap.core.service.NetworkConnection;
+import com.onestap.onestap.core.util.Logger;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,7 +31,7 @@ import retrofit2.Response;
  * @email mrebelo@stone.com.br
  */
 
-public class AuthManager extends OSTBaseManager implements AuthContract.Manager {
+public final class AuthManager extends OSTBaseManager implements AuthContract.Manager {
 
     private AuthService service;
     private CallbackBoundary callbackBoundary;
@@ -54,11 +57,11 @@ public class AuthManager extends OSTBaseManager implements AuthContract.Manager 
 
             @Override
             public void onFailure(Call<AuthToken> call, Throwable t) {
+                Logger.error(t);
                 callbackBoundary.error(t);
             }
         });
     }
-
 
 
     @Override

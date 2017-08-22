@@ -8,10 +8,7 @@
 package com.onestap.onestap;
 
 import com.onestap.onestap.core.model.domain.enumerator.OSTEnvironment;
-import com.onestap.onestap.core.util.StringUtil;
-import com.onestap.onestap.profile.model.domain.entities.TempProfile;
-
-import java.util.UUID;
+import com.onestap.onestap.user.model.domain.entities.TempProfile;
 
 /**
  * Created on 17/08/2017
@@ -20,7 +17,7 @@ import java.util.UUID;
  * @email mrebelo@stone.com.br
  */
 
-public class OSTConfiguration {
+public final class OSTConfiguration {
 
     private String clientId;
     private String host;
@@ -30,10 +27,9 @@ public class OSTConfiguration {
 
     private String dataKey;
 
-    private TempProfile pendingProfile;
+    private TempProfile tempProfile;
 
     private OSTEnvironment environment;
-
 
 
     public OSTConfiguration() {
@@ -87,15 +83,11 @@ public class OSTConfiguration {
     }
 
     String getDataKey() {
-        if(dataKey == null){
-            throw new RuntimeException("Data key not defined");
-        }
         return dataKey;
     }
 
-
-    public TempProfile getPendingProfile() {
-        return pendingProfile;
+    public TempProfile getTempProfile() {
+        return tempProfile;
     }
 
     /*****
@@ -129,8 +121,8 @@ public class OSTConfiguration {
         this.dataKey = dataKey;
     }
 
-    public void setPendingProfile(TempProfile pendingProfile) {
-        this.pendingProfile = pendingProfile;
+    public void setTempProfile(TempProfile tempProfile) {
+        this.tempProfile = tempProfile;
     }
 
     public void setEnvironment(OSTEnvironment environment) {

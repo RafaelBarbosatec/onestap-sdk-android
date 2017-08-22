@@ -19,7 +19,7 @@ import android.view.View;
  * @email mrebelo@stone.com.br
  */
 
-abstract class OSTButton extends AppCompatButton implements View.OnClickListener {
+public abstract class OSTButton extends AppCompatButton implements View.OnClickListener {
 
 
     public OSTButton(Context context) {

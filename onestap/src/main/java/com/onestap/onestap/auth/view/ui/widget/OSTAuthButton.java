@@ -5,7 +5,7 @@
  *
  */
 
-package com.onestap.onestap.core.view.ui.widget;
+package com.onestap.onestap.auth.view.ui.widget;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.onestap.onestap.core.model.domain.boundary.AuthCallback;
+import com.onestap.onestap.core.view.ui.widget.OSTButton;
 import com.onestap.onestap.login.view.ui.activity.LoginActivity;
 
 /**
