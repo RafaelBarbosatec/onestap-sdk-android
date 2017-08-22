@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.onestap.onestap.auth.OSTAuth;
-import com.onestap.onestap.auth.model.domain.entities.AuthToken;
-import com.onestap.onestap.auth.view.ui.widget.OSTAuthButton;
-import com.onestap.onestap.core.model.domain.boundary.AuthCallback;
+import com.onestap.auth.OSTAuth;
+import com.onestap.auth.model.domain.entities.AuthToken;
+import com.onestap.auth.view.ui.widget.OSTAuthButton;
+import com.onestap.core.model.domain.boundary.AuthCallback;
 
 public class MainActivity extends AppCompatActivity {
 

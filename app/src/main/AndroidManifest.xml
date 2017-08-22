@@ -3,7 +3,7 @@
     package="com.onestap.onestapsdk">
 
     <application
-        android:name=".App"
+        android:name=".MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.onestap.onestap.login.view.ui.activity.LoginActivity">
+        <activity android:name="com.onestap.login.view.ui.activity.LoginActivity">
             <intent-filter>
                 <data
                     android:host="onestap"

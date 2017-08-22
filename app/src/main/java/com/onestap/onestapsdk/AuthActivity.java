@@ -16,11 +16,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.onestap.onestap.OST;
-import com.onestap.onestap.auth.OSTAuth;
-import com.onestap.onestap.auth.model.domain.entities.AuthToken;
-import com.onestap.onestap.core.model.domain.boundary.AuthCallback;
-import com.onestap.onestap.core.model.domain.boundary.CallbackBoundary;
+import com.onestap.OST;
+import com.onestap.auth.OSTAuth;
+import com.onestap.auth.model.domain.entities.AuthToken;
+import com.onestap.core.model.domain.boundary.AuthCallback;
+import com.onestap.core.model.domain.boundary.CallbackBoundary;
 
 public class AuthActivity extends AppCompatActivity {
 

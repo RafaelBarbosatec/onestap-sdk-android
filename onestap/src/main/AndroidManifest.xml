@@ -6,7 +6,7 @@
 
     <application android:supportsRtl="true">
         <activity
-            android:name=".login.view.ui.activity.LoginActivity"
+            android:name="com.onestap.login.view.ui.activity.LoginActivity"
             android:screenOrientation="portrait" />
     </application>
 
