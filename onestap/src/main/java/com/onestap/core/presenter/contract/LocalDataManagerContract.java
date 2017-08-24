@@ -16,9 +16,9 @@ package com.onestap.core.presenter.contract;
 
 public interface LocalDataManagerContract {
 
-    void save(Object value, String key);
+    void saveData(Object value, String key);
 
     void remove(String key);
 
-    <T> T get(String key, Class<T> clazz);
+    <T> T getData(String key, Class<T> clazz);
 }

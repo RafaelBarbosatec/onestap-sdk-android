@@ -10,7 +10,7 @@ package com.onestap.core.model.manager;
 import android.content.Context;
 
 import com.google.gson.Gson;
-import com.jgabrielfreitas.datacontroller.DataController;
+import com.onestap.core.helper.SharedPreferenceHelper;
 import com.onestap.core.presenter.contract.LocalDataManagerContract;
 
 /**
@@ -19,25 +19,25 @@ import com.onestap.core.presenter.contract.LocalDataManagerContract;
 
 public class LocalDataManager implements LocalDataManagerContract {
 
-    private DataController dataController;
+    private SharedPreferenceHelper mPreferenceHelper;
 
     public LocalDataManager(Context context) {
-        this.dataController = new DataController(context);
+        this.mPreferenceHelper = new SharedPreferenceHelper(context);
+    }
+
+
+    @Override
+    public void saveData(Object value, String key) {
+        this.mPreferenceHelper.writeData(key, new Gson().toJson(value));
     }
 
     @Override
-    public void save(Object value, String key){
-        dataController.writeData(key, new Gson().toJson(value));
+    public void remove(String key) {
+        this.mPreferenceHelper.remove(key);
     }
 
     @Override
-    public void remove(String key){
-        dataController.remove(key);
+    public <T> T getData(String key, Class<T> clazz) {
+        return new Gson().fromJson(this.mPreferenceHelper.readStringData(key), clazz);
     }
-
-    @Override
-    public <T> T get(String key, Class<T> clazz){
-        return new Gson().fromJson(dataController.readStringData(key), clazz);
-    }
-
 }

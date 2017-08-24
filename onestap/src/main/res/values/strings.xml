@@ -2,7 +2,6 @@
 
 
     <string name="app_name">onestap</string>
+    <string name="onestap_preference_file">onestap-preference-file</string>
 
-
-    <string name="login_with_onestap">Login with onestap</string>
 </resources>
