@@ -5,7 +5,7 @@
  *
  */
 
-package com.onestap.core.util;
+package com.onestap.core.helper;
 
 import android.util.Log;
 
@@ -18,7 +18,7 @@ import com.onestap.onestap.BuildConfig;
  * @email mrebelo@stone.com.br
  */
 
-public final class Logger {
+public final class LoggerHelper {
 
     static final String TAG = BuildConfig.APPLICATION_ID;
 
