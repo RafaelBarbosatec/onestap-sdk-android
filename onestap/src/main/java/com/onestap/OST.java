@@ -89,7 +89,7 @@ public class OST {
 
 
     public AuthToken getToken() {
-        return localDataManager.get(Options.ACCESS_TOKEN.name(), AuthToken.class);
+        return localDataManager.getData(Options.ACCESS_TOKEN.name(), AuthToken.class);
     }
 
     public TempProfile getTempProfile() {

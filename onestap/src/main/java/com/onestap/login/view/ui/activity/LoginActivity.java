@@ -35,7 +35,7 @@ public final class LoginActivity extends OSTBaseActivity implements LoginContrac
 
     @Override
     protected WebViewClient client() {
-        uuid = UUID.randomUUID().toString();
+        uuid = OST.getInstance().getFingerPrintSessionId();
         return new LoginWebViewClient(uuid, authCallback);
     }
 

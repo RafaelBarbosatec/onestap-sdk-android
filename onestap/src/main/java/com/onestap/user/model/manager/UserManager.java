@@ -12,7 +12,7 @@ import android.support.annotation.NonNull;
 import com.onestap.OST;
 import com.onestap.core.model.domain.boundary.CallbackBoundary;
 import com.onestap.core.service.NetworkConnection;
-import com.onestap.core.util.Logger;
+import com.onestap.core.helper.LoggerHelper;
 import com.onestap.user.model.domain.entities.PendingProfile;
 import com.onestap.user.model.domain.entities.TempProfile;
 import com.onestap.user.presenter.contract.UserContract;
@@ -58,7 +58,7 @@ public final class UserManager implements UserContract.Manager {
 
             @Override
             public void onFailure(@NonNull Call<PendingProfile> call, Throwable t) {
-                Logger.error(t);
+                LoggerHelper.error(t);
                 callbackBoundary.error(t);
             }
         });

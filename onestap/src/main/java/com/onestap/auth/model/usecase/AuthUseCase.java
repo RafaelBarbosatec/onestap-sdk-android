@@ -13,6 +13,7 @@ import com.onestap.OST;
 import com.onestap.auth.model.domain.entities.AuthToken;
 import com.onestap.auth.model.manager.AuthManager;
 import com.onestap.auth.presenter.contract.AuthContract;
+import com.onestap.core.helper.LoggerHelper;
 import com.onestap.core.model.domain.boundary.AuthCallback;
 import com.onestap.core.model.domain.boundary.CallbackBoundary;
 import com.onestap.core.model.domain.enumerator.Options;
@@ -39,7 +40,7 @@ public final class AuthUseCase extends BaseUseCase implements AuthContract.UseCa
         super();
         this.context = context;
         this.localManager = new LocalDataManager(context);
-        this.token = localManager.get(Options.ACCESS_TOKEN.toString(), AuthToken.class);
+        this.token = localManager.getData(Options.ACCESS_TOKEN.toString(), AuthToken.class);
         this.manager = new AuthManager();
 
         options.put(Options.REDIRECT_URI.toString(), OST.getInstance().getSchema() + "://" + OST.getInstance().getHost());
@@ -51,12 +52,13 @@ public final class AuthUseCase extends BaseUseCase implements AuthContract.UseCa
             @Override
             public void success(AuthToken response) {
                 callbackBoundary.success(response);
-                localManager.save(response, Options.ACCESS_TOKEN.toString());
+                localManager.saveData(response, Options.ACCESS_TOKEN.toString());
                 FingerPrintManager.sendFingerPrint(context, response);
             }
 
             @Override
             public void error(Throwable e) {
+                LoggerHelper.error(e);
                 callbackBoundary.error(e);
             }
         });
@@ -97,6 +99,7 @@ public final class AuthUseCase extends BaseUseCase implements AuthContract.UseCa
 
                 @Override
                 public void error(Throwable e) {
+                    LoggerHelper.error(e);
                     callbackBoundary.error(e);
                 }
             });

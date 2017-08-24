@@ -16,7 +16,7 @@ import com.onestap.core.model.domain.enumerator.Method;
 import com.onestap.core.model.domain.enumerator.Options;
 import com.onestap.core.model.manager.OSTBaseManager;
 import com.onestap.core.service.NetworkConnection;
-import com.onestap.core.util.Logger;
+import com.onestap.core.helper.LoggerHelper;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,7 +55,7 @@ public final class AuthManager extends OSTBaseManager implements AuthContract.Ma
 
             @Override
             public void onFailure(Call<AuthToken> call, Throwable t) {
-                Logger.error(t);
+                LoggerHelper.error(t);
                 callbackBoundary.error(t);
             }
         });
