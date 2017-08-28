@@ -7,6 +7,7 @@
 
 package com.onestap.onestapsdk;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
@@ -30,6 +31,8 @@ public class AuthActivity extends AppCompatActivity {
     AppCompatButton btnVerify;
     AppCompatButton btnRefresh;
     AppCompatButton btnRevoke;
+    AppCompatButton btnUser;
+
 
 
     @Override
@@ -94,6 +97,13 @@ public class AuthActivity extends AppCompatActivity {
 
         });
 
+        btnUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AuthActivity.this, UserActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -105,7 +115,7 @@ public class AuthActivity extends AppCompatActivity {
         btnVerify = (AppCompatButton) findViewById(R.id.btn_verify_token);
         btnRefresh = (AppCompatButton) findViewById(R.id.btn_refresh_token);
         btnRevoke = (AppCompatButton) findViewById(R.id.btn_revoke_token);
-
+        btnUser = (AppCompatButton) findViewById(R.id.btn_user);
         setTextViewAuthToken(OST.getInstance().getToken());
     }
 

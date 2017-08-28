@@ -32,16 +32,14 @@ public final class AuthUseCase extends BaseUseCase implements AuthContract.UseCa
 
 
     private Context context;
-    private LocalDataManager localManager;
     private AuthToken token;
     private AuthManager manager;
 
     public AuthUseCase(Context context) {
-        super();
+        super(context);
         this.context = context;
-        this.localManager = new LocalDataManager(context);
-        this.token = localManager.getData(Options.ACCESS_TOKEN.toString(), AuthToken.class);
         this.manager = new AuthManager();
+        this.token = localManager.getData(Options.ACCESS_TOKEN.toString(), AuthToken.class);
 
         options.put(Options.REDIRECT_URI.toString(), OST.getInstance().getSchema() + "://" + OST.getInstance().getHost());
     }
