@@ -8,9 +8,14 @@
 package com.onestap.core.view.ui.widget;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
+import com.onestap.onestap.R;
 
 /**
  * Created on 17/08/2017
@@ -19,7 +24,7 @@ import android.view.View;
  * @email mrebelo@stone.com.br
  */
 
-public abstract class OSTButton extends AppCompatButton implements View.OnClickListener {
+public class OSTButton extends AppCompatButton implements View.OnClickListener {
 
 
     public OSTButton(Context context) {
@@ -42,6 +47,8 @@ public abstract class OSTButton extends AppCompatButton implements View.OnClickL
 
     protected void init(){
         setOnClickListener(this);
+        setBackground(ContextCompat.getDrawable(getContext(), R.drawable.onestap_button_selector));
+        setTextColor(ContextCompat.getColor(getContext(), android.R.color.white));
     }
 
 

@@ -12,25 +12,16 @@ import com.onestap.auth.OSTAuth;
 import com.onestap.auth.model.domain.entities.AuthToken;
 import com.onestap.auth.view.ui.widget.OSTAuthButton;
 import com.onestap.core.model.domain.boundary.AuthCallback;
+import com.onestap.core.view.ui.widget.OSTButton;
 
 public class MainActivity extends AppCompatActivity {
 
     static final String TAG = MainActivity.class.getName();
 
-    OSTAuthButton mOSTAuthButton;
-    AppCompatButton mBtnAuthPage;
-
 
     @Override
     protected void onStart() {
         super.onStart();
-
-        mBtnAuthPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new OSTAuth(MainActivity.this).loadAuthPage();
-            }
-        });
     }
 
     @Override
@@ -53,8 +44,5 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-        mOSTAuthButton = (OSTAuthButton) findViewById(R.id.btn_auth);
-        mBtnAuthPage = (AppCompatButton) findViewById(R.id.btn_auth_page);
     }
 }

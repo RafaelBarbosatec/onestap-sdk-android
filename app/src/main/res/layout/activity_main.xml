@@ -13,17 +13,8 @@
         android:id="@+id/btn_auth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Insert your text here"
-        />
-
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_auth_page"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Open Auth Page"
+        android:text="one[s]tap"
+        android:layout_margin="@dimen/magin_small"
         />
 
 </LinearLayout>
