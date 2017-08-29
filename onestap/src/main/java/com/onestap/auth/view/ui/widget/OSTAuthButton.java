@@ -8,15 +8,11 @@
 package com.onestap.auth.view.ui.widget;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.onestap.auth.OSTAuth;
-import com.onestap.auth.presenter.AuthPresenter;
-import com.onestap.core.model.domain.boundary.AuthCallback;
 import com.onestap.core.view.ui.widget.OSTButton;
-import com.onestap.login.view.ui.activity.LoginActivity;
 
 /**
  * Created on 17/08/2017
@@ -38,10 +34,6 @@ public final class OSTAuthButton extends OSTButton {
 
     public OSTAuthButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-    }
-
-    public void setAuthCallback(AuthCallback authCallback) {
-        LoginActivity.authCallback = authCallback;
     }
 
     @Override

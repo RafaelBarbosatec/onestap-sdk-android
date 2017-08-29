@@ -25,22 +25,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        mOSTAuthButton.setAuthCallback(new AuthCallback() {
-            @Override
-            public void success(AuthToken response) {
-                if (response.hasSuccess()) {
-                    startActivity(new Intent(MainActivity.this, AuthActivity.class));
-                    finish();
-                }
-            }
-
-            @Override
-            public void error(Throwable e) {
-                Log.e(TAG, e.getMessage());
-                e.printStackTrace();
-            }
-        });
-
         mBtnAuthPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
