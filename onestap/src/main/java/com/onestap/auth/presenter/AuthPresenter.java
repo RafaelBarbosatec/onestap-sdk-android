@@ -93,11 +93,4 @@ public final class AuthPresenter extends OSTBasePresenter<AuthContract.View> imp
         });
     }
 
-    @Override
-    public void loadAuthPage() {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(OST.getInstance().getLoginUrl()));
-        context.startActivity(intent);
-    }
-
 }

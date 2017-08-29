@@ -61,8 +61,6 @@ public interface AuthContract {
 
         void saveTemporaryProfile(TempProfile tempProfile);
 
-        void loadAuthPage();
-
     }
 
     interface View extends OSTBaseContract.View {
