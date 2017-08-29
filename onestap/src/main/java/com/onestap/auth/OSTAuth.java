@@ -8,9 +8,12 @@
 package com.onestap.auth;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.onestap.auth.presenter.AuthPresenter;
 import com.onestap.auth.presenter.contract.AuthContract;
+import com.onestap.auth.view.ui.widget.OSTAuthActivity;
+import com.onestap.core.model.domain.boundary.AuthCallback;
 import com.onestap.core.model.domain.boundary.CallbackBoundary;
 
 /**
@@ -30,8 +33,9 @@ public final class OSTAuth {
         this.presenter = new AuthPresenter(context);
     }
 
-    public void loadAuthPage(){
-        presenter.loadAuthPage();
+    public void loadAuthPage(AuthCallback authCallback){
+        OSTAuthActivity.authCallback = authCallback;
+        context.startActivity(new Intent(context, OSTAuthActivity.class));
     }
 
     public void requestToken(String authCode, CallbackBoundary callbackBoundary) {

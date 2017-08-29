@@ -8,6 +8,7 @@
         <activity
             android:name="com.onestap.login.view.ui.activity.LoginActivity"
             android:screenOrientation="portrait" />
+        <activity android:name="com.onestap.auth.view.ui.widget.OSTAuthActivity"></activity>
     </application>
 
 </manifest>
