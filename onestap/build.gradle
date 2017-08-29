@@ -31,14 +31,14 @@ android {
         buildConfigField("String", "FLIP_LOGIN_URL", '"${uri}/?client_id=${key}&redirect_uri=${schema}://${host}&response_type=code&state=${state}"')
 
 //      PRODUCTION
-        buildConfigField("String", "BASE_API_URL", '"https://auth.flipconnect.io"')
-        buildConfigField("String", "PRIVATE_API_URL", '"https://api.flipconnect.io"')
-        buildConfigField("String", "SIGNIN_API_URL", '"https://signin.flipconnect.io"')
+        buildConfigField("String", "BASE_API_URL", '"https://auth.onestap.com"')
+        buildConfigField("String", "PRIVATE_API_URL", '"https://api.onestap.com"')
+        buildConfigField("String", "SIGNIN_API_URL", '"https://signin.onestap.com"')
 
 //      SANDBOX
-        buildConfigField("String", "BASE_API_URL_SANDBOX", '"https://auth-sandbox.flipconnect.io"')
-        buildConfigField("String", "PRIVATE_API_URL_SANDBOX", '"https://api-sandbox.flipconnect.io"')
-        buildConfigField("String", "SIGNIN_API_URL_SANDBOX", '"https://signin-sandbox.flipconnect.io"')
+        buildConfigField("String", "BASE_API_URL_SANDBOX", '"https://auth-sandbox.onestap.com"')
+        buildConfigField("String", "PRIVATE_API_URL_SANDBOX", '"https://api-sandbox.onestap.com"')
+        buildConfigField("String", "SIGNIN_API_URL_SANDBOX", '"https://signin-sandbox.onestap.com"')
 
     }
 
@@ -70,18 +70,18 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    testCompile 'junit:junit:4.12'
 
     compile "com.android.support:appcompat-v7:$android_version"
     compile "com.android.support:recyclerview-v7:$android_version"
     compile "com.android.support:design:$android_version"
-
+    compile "com.android.support:customtabs:$android_version"
     compile "com.squareup.retrofit2:retrofit:$retrofit_version"
     compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     compile "com.github.bumptech.glide:glide:$glide_version"
 
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
     compile fileTree(dir: 'libs', include: '*.jar')
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
 }
