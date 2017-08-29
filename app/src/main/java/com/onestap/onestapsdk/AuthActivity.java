@@ -22,16 +22,17 @@ import com.onestap.auth.OSTAuth;
 import com.onestap.auth.model.domain.entities.AuthToken;
 import com.onestap.core.model.domain.boundary.AuthCallback;
 import com.onestap.core.model.domain.boundary.CallbackBoundary;
+import com.onestap.core.view.ui.widget.OSTButton;
 
 public class AuthActivity extends AppCompatActivity {
 
     static final String TAG = AuthActivity.class.getName();
 
     EditText editAuthToken;
-    AppCompatButton btnVerify;
-    AppCompatButton btnRefresh;
-    AppCompatButton btnRevoke;
-    AppCompatButton btnUser;
+    OSTButton btnVerify;
+    OSTButton btnRefresh;
+    OSTButton btnRevoke;
+    OSTButton btnUser;
 
 
 
@@ -113,10 +114,10 @@ public class AuthActivity extends AppCompatActivity {
         setContentView(R.layout.activity_auth);
 
         editAuthToken = (EditText) findViewById(R.id.txt_auth_token);
-        btnVerify = (AppCompatButton) findViewById(R.id.btn_verify_token);
-        btnRefresh = (AppCompatButton) findViewById(R.id.btn_refresh_token);
-        btnRevoke = (AppCompatButton) findViewById(R.id.btn_revoke_token);
-        btnUser = (AppCompatButton) findViewById(R.id.btn_user);
+        btnVerify = (OSTButton) findViewById(R.id.btn_verify_token);
+        btnRefresh = (OSTButton) findViewById(R.id.btn_refresh_token);
+        btnRevoke = (OSTButton) findViewById(R.id.btn_revoke_token);
+        btnUser = (OSTButton) findViewById(R.id.btn_user);
         setTextViewAuthToken(OST.getInstance().getToken());
     }
 

@@ -24,32 +24,36 @@
         android:minLines="10"
         />
 
-    <android.support.v7.widget.AppCompatButton
+    <com.onestap.core.view.ui.widget.OSTButton
         android:id="@+id/btn_verify_token"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Verify Token"
+        android:layout_margin="@dimen/magin_small"
         />
 
-    <android.support.v7.widget.AppCompatButton
+    <com.onestap.core.view.ui.widget.OSTButton
         android:id="@+id/btn_refresh_token"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Refresh Token"
+        android:layout_margin="@dimen/magin_small"
         />
 
-    <android.support.v7.widget.AppCompatButton
+    <com.onestap.core.view.ui.widget.OSTButton
         android:id="@+id/btn_revoke_token"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Revoke Token"
+        android:layout_margin="@dimen/magin_small"
         />
 
-    <android.support.v7.widget.AppCompatButton
+    <com.onestap.core.view.ui.widget.OSTButton
         android:id="@+id/btn_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="User"
+        android:layout_margin="@dimen/magin_small"
         />
 
 </LinearLayout>

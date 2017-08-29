@@ -18,7 +18,7 @@
         android:maxLines="20"
         />
 
-    <android.support.v7.widget.AppCompatButton
+    <com.onestap.core.view.ui.widget.OSTButton
         android:id="@+id/btn_get_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

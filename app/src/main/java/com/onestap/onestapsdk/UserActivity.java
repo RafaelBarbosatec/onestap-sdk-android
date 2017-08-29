@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import com.google.gson.Gson;
 import com.onestap.core.model.domain.boundary.CallbackBoundary;
+import com.onestap.core.view.ui.widget.OSTButton;
 import com.onestap.user.model.domain.entities.AccountResponse;
 import com.onestap.user.presenter.UserPresenter;
 
@@ -17,7 +18,7 @@ public class UserActivity extends AppCompatActivity {
     static final String TAG = UserActivity.class.getName();
 
     EditText editUser;
-    AppCompatButton btnGetUser;
+    OSTButton btnGetUser;
 
 
     @Override
@@ -50,7 +51,7 @@ public class UserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user);
 
         editUser = (EditText) findViewById(R.id.edit_user_json);
-        btnGetUser = (AppCompatButton) findViewById(R.id.btn_get_user);
+        btnGetUser = (OSTButton) findViewById(R.id.btn_get_user);
     }
 
 }
