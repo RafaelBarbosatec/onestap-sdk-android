@@ -84,6 +84,7 @@ public class AuthActivity extends AppCompatActivity {
                     @Override
                     public void success(Object response) {
                         Toast.makeText(AuthActivity.this, "Revoke successed!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(AuthActivity.this, MainActivity.class));
                         finish();
                     }
 

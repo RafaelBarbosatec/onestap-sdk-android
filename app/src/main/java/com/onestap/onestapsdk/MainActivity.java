@@ -3,7 +3,10 @@ package com.onestap.onestapsdk;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.onestap.auth.OSTAuth;
 import com.onestap.auth.model.domain.entities.AuthToken;
@@ -15,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     static final String TAG = MainActivity.class.getName();
 
     OSTAuthButton mOSTAuthButton;
+    AppCompatButton mBtnAuthPage;
+
 
     @Override
     protected void onStart() {
@@ -33,6 +38,13 @@ public class MainActivity extends AppCompatActivity {
             public void error(Throwable e) {
                 Log.e(TAG, e.getMessage());
                 e.printStackTrace();
+            }
+        });
+
+        mBtnAuthPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new OSTAuth(MainActivity.this).loadAuthPage();
             }
         });
     }
@@ -54,10 +66,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void error(Throwable e) {
                 Log.e(TAG, e.getMessage());
-                e.printStackTrace();
+                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
         mOSTAuthButton = (OSTAuthButton) findViewById(R.id.btn_auth);
+        mBtnAuthPage = (AppCompatButton) findViewById(R.id.btn_auth_page);
     }
 }

@@ -12,6 +12,8 @@ import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.onestap.auth.OSTAuth;
+import com.onestap.auth.presenter.AuthPresenter;
 import com.onestap.core.model.domain.boundary.AuthCallback;
 import com.onestap.core.view.ui.widget.OSTButton;
 import com.onestap.login.view.ui.activity.LoginActivity;
@@ -44,6 +46,6 @@ public final class OSTAuthButton extends OSTButton {
 
     @Override
     public void onClick(View view) {
-        getContext().startActivity(new Intent(getContext(), LoginActivity.class));
+        new OSTAuth(getContext()).loadAuthPage();
     }
 }

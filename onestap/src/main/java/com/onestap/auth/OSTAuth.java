@@ -20,7 +20,7 @@ import com.onestap.core.model.domain.boundary.CallbackBoundary;
  * @email mrebelo@stone.com.br
  */
 
-public class OSTAuth {
+public final class OSTAuth {
 
     private Context context;
     private AuthContract.Presenter presenter;
@@ -30,6 +30,9 @@ public class OSTAuth {
         this.presenter = new AuthPresenter(context);
     }
 
+    public void loadAuthPage(){
+        presenter.loadAuthPage();
+    }
 
     public void requestToken(String authCode, CallbackBoundary callbackBoundary) {
         presenter.requestToken(authCode, callbackBoundary);

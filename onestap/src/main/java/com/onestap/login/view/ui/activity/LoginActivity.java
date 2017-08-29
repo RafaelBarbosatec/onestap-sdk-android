@@ -12,15 +12,13 @@ import android.os.Bundle;
 import android.webkit.WebViewClient;
 
 import com.onestap.OST;
-import com.onestap.onestap.R;
 import com.onestap.auth.model.domain.entities.AuthToken;
 import com.onestap.core.model.domain.boundary.AuthCallback;
 import com.onestap.core.view.ui.activity.OSTBaseActivity;
 import com.onestap.login.presenter.LoginPresenter;
 import com.onestap.login.presenter.contract.LoginContract;
 import com.onestap.login.view.ui.LoginWebViewClient;
-
-import java.util.UUID;
+import com.onestap.onestap.R;
 
 public final class LoginActivity extends OSTBaseActivity implements LoginContract.View {
 
