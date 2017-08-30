@@ -18,7 +18,6 @@ import com.onestap.core.helper.LoggerHelper;
 import com.onestap.user.model.domain.entities.AccountResponse;
 import com.onestap.user.model.domain.entities.PendingProfile;
 import com.onestap.user.model.domain.entities.TempProfile;
-import com.onestap.user.model.domain.entities.UserResponse;
 import com.onestap.user.presenter.contract.UserContract;
 import com.onestap.user.service.UserService;
 
@@ -47,14 +46,14 @@ public final class UserManager extends OSTBaseManager implements UserContract.Ma
     public void savePendingProfile(TempProfile body, final CallbackBoundary<PendingProfile> callbackBoundary) {
         super.callbackBoundary(callbackBoundary);
 
-        service.saveTempProfile(body).enqueue(new Callback<PendingProfile>(){
+        service.saveTempProfile(body).enqueue(new Callback<PendingProfile>() {
             @Override
             public void onResponse(@NonNull Call<PendingProfile> call, @NonNull Response<PendingProfile> response) {
                 if (response.isSuccessful() && response.body().hasSuccess()) {
                     OST.getInstance().getConfiguration().setDataKey(response.body().getDataKey());
                     callbackBoundary.success(response.body());
 
-                }else if (response.body() == null) {
+                } else if (response.body() == null) {
                     callbackBoundary.error(new Throwable("Unknow error"));
                 } else {
                     callbackBoundary.error(new Throwable(response.body().toString()));
@@ -71,10 +70,12 @@ public final class UserManager extends OSTBaseManager implements UserContract.Ma
 
 
     @Override
-    public void getUser(AuthToken token, final CallbackBoundary<AccountResponse> callbackBoundary) {
+    public void getUser(final CallbackBoundary<AccountResponse> callbackBoundary, AuthToken token, String... categories) {
         super.callbackBoundary(callbackBoundary);
 
-        service.getUser("Bearer " + token.getAccessToken()).enqueue(new Callback<AccountResponse>() {
+        final String authorization = "Bearer " + token.getAccessToken();
+
+        service.getUser(authorization, categories).enqueue(new Callback<AccountResponse>() {
             @Override
             public void onResponse(Call<AccountResponse> call, Response<AccountResponse> response) {
                 if (response.isSuccessful() && response.body().hasSuccess())

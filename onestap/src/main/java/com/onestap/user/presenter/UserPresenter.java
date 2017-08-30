@@ -31,7 +31,7 @@ public class UserPresenter implements UserContract.Presenter {
     }
 
     @Override
-    public void getUser(CallbackBoundary<AccountResponse> callbackBoundary) {
-        useCase.getUser(callbackBoundary);
+    public void getUser(CallbackBoundary<AccountResponse> callbackBoundary, String... categories) {
+        useCase.getUser(callbackBoundary, categories);
     }
 }

@@ -12,7 +12,6 @@ import com.onestap.core.model.domain.boundary.CallbackBoundary;
 import com.onestap.user.model.domain.entities.AccountResponse;
 import com.onestap.user.model.domain.entities.PendingProfile;
 import com.onestap.user.model.domain.entities.TempProfile;
-import com.onestap.user.model.domain.entities.UserResponse;
 
 /**
  * Created on 21/08/2017
@@ -23,27 +22,30 @@ import com.onestap.user.model.domain.entities.UserResponse;
 
 public interface UserContract {
 
+        void savePendingProfile(TempProfile body, CallbackBoundary<PendingProfile> callbackBoundary);
+
+        void getUser(CallbackBoundary<AccountResponse> callbackBoundary, String... categories);
 
 
-    interface Manager extends UserContract {
+    interface Manager {
 
         void savePendingProfile(TempProfile body, CallbackBoundary<PendingProfile> callbackBoundary);
 
-        void getUser(AuthToken token, CallbackBoundary<AccountResponse> callbackBoundary);
+        void getUser(CallbackBoundary<AccountResponse> callbackBoundary, AuthToken token, String... categories);
 
     }
 
-    interface UseCase extends UserContract {
+    interface UseCase {
 
         void savePendingProfile(TempProfile body, CallbackBoundary<PendingProfile> callbackBoundary);
 
-        void getUser(CallbackBoundary<AccountResponse> callbackBoundary);
+        void getUser(CallbackBoundary<AccountResponse> callbackBoundary, String... categories);
 
     }
 
-    interface Presenter extends UserContract {
+    interface Presenter {
 
-        void getUser(CallbackBoundary<AccountResponse> callbackBoundary);
+        void getUser(CallbackBoundary<AccountResponse> callbackBoundary, String... categories);
     }
 
 }
