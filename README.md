@@ -241,4 +241,4 @@ Pull requests serão muito bem-vindos!
 
 ## Problemas
 
-Algum problema, dúvida ou sugestão? [Abra uma issue!](https://github.com/stone-payments/desafio-mobile/issues/new)
+Algum problema, dúvida ou sugestão? [Abra uma issue!](https://github.com/stone-payments/onestap-sdk-android/issues/new)
