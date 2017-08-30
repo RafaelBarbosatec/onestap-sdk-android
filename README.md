@@ -180,7 +180,7 @@ A atualização de token é feita através da classe OSTAuth. É necessário imp
 **Exemplo de implementação:**
 ```java
                 
-    new OSTAuth(context).refreshToken(new AuthCallback() {
+    new OSTAuth(this).refreshToken(new AuthCallback() {
         @Override
         public void success(AuthToken response) {
             // ...
@@ -201,7 +201,7 @@ A verificação de token é feita através da classe OSTAuth. É necessário imp
 **Exemplo de implementação:**
 ```java
                 
-    new OSTAuth(AuthActivity.this).verifyToken(new AuthCallback() {
+    new OSTAuth(this).verifyToken(new AuthCallback() {
         @Override
         public void success(AuthToken response) {
             // ....
@@ -219,9 +219,10 @@ A verificação de token é feita através da classe OSTAuth. É necessário imp
 Para revogar o Token do usuário, basta chamar o método `revokeToken`.
 
 **Exemplo de implementação:**
+
 ```java
 
-        new OSTAuth(AuthActivity.this).revokeToken(new CallbackBoundary() {
+        new OSTAuth(this).revokeToken(new CallbackBoundary() {
             @Override
             public void success(Object response) {
                  // ...
@@ -232,6 +233,33 @@ Para revogar o Token do usuário, basta chamar o método `revokeToken`.
                  // ...
             }
         });
+
+```
+
+
+### Buscar dados do usário
+
+Para buscar os dados dos usuário, basta executar o método `getUser` com os respectivos parâmetros e informando as categorias que deseja obter.
+ 
+
+**Exemplo de implementação:**
+
+```java
+
+    String[] categories = {"documents", "addresses", "emails", "personaldata", "phones"};
+
+    new OSTUser(this).getUser(new CallbackBoundary<AccountResponse>() {
+            @Override
+            public void success(AccountResponse response) {
+                 // ...
+            }
+    
+            @Override
+            public void error(Throwable e) {
+                 // ...
+            }
+        }, categories);
+    }
 
 ```
 
