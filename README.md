@@ -37,7 +37,7 @@ Veja abaixo como realizar a configuração inicial do one[s]tap
 
 Você deve adicionar a activity de Login do one[s]tap ao seu manifest. Também é necessário adicionar uma `intent-filter` contendo seu host e seu schema cadastrado no ambiente do one[s]tap.
 ```xml
-        <activity android:name="com.onestap.login.view.ui.activity.LoginActivity">
+        <activity android:name="com.onestap.auth.view.ui.widget.OSTAuthActivity">
             <intent-filter>
                 <data
                     android:host="SEU_HOST"
@@ -55,6 +55,9 @@ Você deve adicionar a activity de Login do one[s]tap ao seu manifest. Também �
 É necessário inicializar a classe OSTConfiguration na abertura do app e devemos fazer esse trabalho dentro de uma especialização da classe Application, uma vez que essas instâncias devem ser declaradas apenas uma vez durante o ciclo de vida do aplicativo.
 
 Você deve fornecer suas informações cadastradas no ambiente do onse[s]tap para inicializar a lib.
+
+**Exemplo de implementação:**
+
 ```java
 
 
@@ -113,6 +116,28 @@ Após a inicialização, se for passado o fingerPrintID, o fingerPrintSessionId 
 
 Após a configuração básica do one[s]tap você poderá fazer o Login
 
+### Login por método
+
+Basta chamar o método `loadAuthPage` que ele irá abrir a página web para o login do usuário:
+
+**Exemplo de implementação:**
+
+```java
+
+    new OSTAuth(this).loadAuthPage(new AuthCallback() {
+            @Override
+            public void success(AuthToken response) {
+                 // ...
+            }
+
+            @Override
+            public void error(Throwable e) {
+                // ...
+            }
+        });
+
+```
+
 ### Adicionando botão de Login
 
 Para realizar o login você deve adicionar nosso botão de Login da seguinte maneira:
@@ -128,6 +153,9 @@ Para realizar o login você deve adicionar nosso botão de Login da seguinte man
 ```
 
 ### Adicionar Callback para retorno do Login
+
+**Exemplo de implementação:**
+
 ```java
  
     OSTButton.setAccountCallback(new AccountCallback() {
@@ -143,6 +171,7 @@ Para realizar o login você deve adicionar nosso botão de Login da seguinte man
         });
         
 ```
+
 
 ### Atualizando o token
 
@@ -183,6 +212,27 @@ A verificação de token é feita através da classe OSTAuth. É necessário imp
             // ...
         }
     });
+```
+
+### Revogando o token
+
+Para revogar o Token do usuário, basta chamar o método `revokeToken`.
+
+**Exemplo de implementação:**
+```java
+
+        new OSTAuth(AuthActivity.this).revokeToken(new CallbackBoundary() {
+            @Override
+            public void success(Object response) {
+                 // ...
+            }
+    
+            @Override
+            public void error(Throwable e) {
+                 // ...
+            }
+        });
+
 ```
 
 ## Contribuições
