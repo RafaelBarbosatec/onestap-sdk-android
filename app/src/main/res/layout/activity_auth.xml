@@ -15,7 +15,6 @@
     tools:context="com.onestap.onestapsdk.AuthActivity">
 
 
-
     <EditText
         android:id="@+id/txt_auth_token"
         android:layout_width="match_parent"
@@ -44,6 +43,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Revoke Token"
+        />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="User"
         />
 
 </LinearLayout>

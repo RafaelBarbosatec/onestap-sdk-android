@@ -52,6 +52,7 @@ public abstract class OSTBaseActivity extends Activity {
             CookieManager.getInstance().setAcceptThirdPartyCookies(webView, true);
     }
 
+
     public void showProgress() {
         connectProgressBar.setVisibility(View.VISIBLE);
     }

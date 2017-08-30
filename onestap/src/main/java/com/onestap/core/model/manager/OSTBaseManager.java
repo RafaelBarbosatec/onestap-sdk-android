@@ -7,30 +7,37 @@
 
 package com.onestap.core.model.manager;
 
-import com.onestap.OST;
-import com.onestap.core.model.domain.enumerator.Options;
 
-import java.util.HashMap;
-import java.util.Map;
+
+import com.onestap.core.model.domain.boundary.CallbackBoundary;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
- * Created on 21/08/2017
- *
- * @author Marcos Gribel
- * @email mrebelo@stone.com.br
+ * Created by Kanda on 10/07/2017.
  */
 
-public abstract class OSTBaseManager {
+public abstract class OSTBaseManager<T> implements Callback<T> {
 
-    protected Map<String, String> options;
+    private CallbackBoundary callbackBoundary;
 
-    protected abstract void request();
-
-
-    protected OSTBaseManager() {
-        options = new HashMap<>();
-        options.put(Options.CLIENT_ID.toString(), OST.getInstance().getClientId());
-        options.put(Options.CLIENT_SECRET.toString(), OST.getInstance().getClientSecret());
+    public void callbackBoundary(CallbackBoundary callbackBoundary) {
+        this.callbackBoundary = callbackBoundary;
     }
 
+    @Override
+    public void onResponse(Call<T> call, Response<T> response) {
+        if (response.isSuccessful()) {
+            callbackBoundary.success(response.body());
+        } else {
+            callbackBoundary.error(new Throwable(response.code() + " Error: " + response.message()));
+        }
+    }
+
+    @Override
+    public void onFailure(Call<T> call, Throwable t) {
+        callbackBoundary.error(t);
+    }
 }

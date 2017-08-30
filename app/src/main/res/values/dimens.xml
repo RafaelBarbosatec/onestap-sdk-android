@@ -1,0 +1,10 @@
+<!--
+  ~ Copyright (c) Stone - All Rights Reserved
+  ~ Unauthorized copying of this file, via any medium is strictly prohibited
+  ~ Proprietary and confidential
+  ~
+  -->
+
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+</resources>

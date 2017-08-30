@@ -7,9 +7,12 @@
 
 package com.onestap.user.presenter.contract;
 
+import com.onestap.auth.model.domain.entities.AuthToken;
 import com.onestap.core.model.domain.boundary.CallbackBoundary;
+import com.onestap.user.model.domain.entities.AccountResponse;
 import com.onestap.user.model.domain.entities.PendingProfile;
 import com.onestap.user.model.domain.entities.TempProfile;
+import com.onestap.user.model.domain.entities.UserResponse;
 
 /**
  * Created on 21/08/2017
@@ -20,18 +23,27 @@ import com.onestap.user.model.domain.entities.TempProfile;
 
 public interface UserContract {
 
-        void savePendingProfile(TempProfile body, CallbackBoundary<PendingProfile> callbackBoundary);
+
 
     interface Manager extends UserContract {
 
+        void savePendingProfile(TempProfile body, CallbackBoundary<PendingProfile> callbackBoundary);
+
+        void getUser(AuthToken token, CallbackBoundary<AccountResponse> callbackBoundary);
 
     }
 
-    interface UseCase {
+    interface UseCase extends UserContract {
 
         void savePendingProfile(TempProfile body, CallbackBoundary<PendingProfile> callbackBoundary);
 
+        void getUser(CallbackBoundary<AccountResponse> callbackBoundary);
+
     }
 
+    interface Presenter extends UserContract {
+
+        void getUser(CallbackBoundary<AccountResponse> callbackBoundary);
+    }
 
 }

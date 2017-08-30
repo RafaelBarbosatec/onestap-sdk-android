@@ -14,7 +14,6 @@ import android.view.View;
 
 import com.onestap.core.model.domain.boundary.AuthCallback;
 import com.onestap.core.view.ui.widget.OSTButton;
-import com.onestap.login.view.ui.activity.LoginActivity;
 
 /**
  * Created on 17/08/2017
@@ -38,12 +37,12 @@ public final class OSTAuthButton extends OSTButton {
         super(context, attrs, defStyleAttr);
     }
 
-    public void setAuthCallback(AuthCallback authCallback) {
-        LoginActivity.authCallback = authCallback;
+    public void setAccountCallback(AuthCallback authCallback) {
+        OSTAuthActivity.authCallback = authCallback;
     }
 
     @Override
     public void onClick(View view) {
-        getContext().startActivity(new Intent(getContext(), LoginActivity.class));
+        getContext().startActivity(new Intent(getContext(), OSTAuthActivity.class));
     }
 }

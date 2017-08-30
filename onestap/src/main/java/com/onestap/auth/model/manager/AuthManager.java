@@ -14,7 +14,7 @@ import com.onestap.auth.service.AuthService;
 import com.onestap.core.model.domain.boundary.CallbackBoundary;
 import com.onestap.core.model.domain.enumerator.Method;
 import com.onestap.core.model.domain.enumerator.Options;
-import com.onestap.core.model.manager.OSTBaseManager;
+import com.onestap.core.model.manager.OSTAuthBaseManager;
 import com.onestap.core.service.NetworkConnection;
 import com.onestap.core.helper.LoggerHelper;
 
@@ -29,7 +29,7 @@ import retrofit2.Response;
  * @email mrebelo@stone.com.br
  */
 
-public final class AuthManager extends OSTBaseManager implements AuthContract.Manager {
+public final class AuthManager extends OSTAuthBaseManager implements AuthContract.Manager {
 
     private AuthService service;
     private CallbackBoundary callbackBoundary;

@@ -7,12 +7,18 @@
 
 package com.onestap.user.service;
 
+import com.onestap.user.model.domain.entities.AccountResponse;
 import com.onestap.user.model.domain.entities.PendingProfile;
 import com.onestap.user.model.domain.entities.TempProfile;
+import com.onestap.user.model.domain.entities.UserResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 /**
  * Created on 21/08/2017
@@ -26,5 +32,13 @@ public interface UserService {
 
     @POST("/user/temporaryProfile")
     Call<PendingProfile> saveTempProfile(@Body TempProfile body);
+
+    @Headers({
+            "Accept-Language: pt-BR",
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
+    @GET("/user/account?include=documents&include=addresses&include=emails&include=personaldata&include=phones")
+    Call<AccountResponse> getUser(@Header("Authorization") String authorization);
 
 }

@@ -9,7 +9,10 @@ package com.onestap.core.model.usecase;
 
 
 
+import android.content.Context;
+
 import com.onestap.OST;
+import com.onestap.core.model.manager.LocalDataManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,9 +24,12 @@ import java.util.Map;
 public abstract class BaseUseCase {
 
 
+    protected LocalDataManager localManager;
     protected Map<String, String> options;
 
-    protected BaseUseCase() {
+    protected BaseUseCase(Context context) {
+        localManager = new LocalDataManager(context);
+
         options = new HashMap<>();
         options.put("CLIENT_ID", OST.getInstance().getClientId());
         options.put("CLIENT_SECRET", OST.getInstance().getClientSecret());

@@ -6,15 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.onestap.onestapsdk.MainActivity">
+    tools:context="com.onestap.onestapsdk.UserActivity">
 
-
-    <com.onestap.auth.view.ui.widget.OSTAuthButton
-        android:id="@+id/btn_auth"
+    <EditText
+        android:id="@+id/edit_user_json"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="one[s]tap"
-        android:layout_margin="@dimen/magin_small"
+        android:focusable="false"
+        android:textSize="16sp"
+        android:minLines="10"
+        android:maxLines="20"
         />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_get_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get User"
+        />
+
 
 </LinearLayout>

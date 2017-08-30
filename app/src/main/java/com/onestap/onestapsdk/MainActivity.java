@@ -3,12 +3,16 @@ package com.onestap.onestapsdk;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.onestap.auth.OSTAuth;
 import com.onestap.auth.model.domain.entities.AuthToken;
 import com.onestap.auth.view.ui.widget.OSTAuthButton;
 import com.onestap.core.model.domain.boundary.AuthCallback;
+import com.onestap.core.view.ui.widget.OSTButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        mOSTAuthButton.setAuthCallback(new AuthCallback() {
+        mOSTAuthButton.setAccountCallback(new AuthCallback() {
             @Override
             public void success(AuthToken response) {
                 if (response.hasSuccess()) {
@@ -42,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        mOSTAuthButton = (OSTAuthButton) findViewById(R.id.btn_auth);
+
         new OSTAuth(this).verifyToken(new AuthCallback() {
             @Override
             public void success(AuthToken response) {
@@ -57,7 +64,5 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
-
-        mOSTAuthButton = (OSTAuthButton) findViewById(R.id.btn_auth);
     }
 }
