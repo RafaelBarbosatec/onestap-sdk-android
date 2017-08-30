@@ -3,16 +3,12 @@ package com.onestap.onestapsdk;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import com.onestap.auth.OSTAuth;
 import com.onestap.auth.model.domain.entities.AuthToken;
 import com.onestap.auth.view.ui.widget.OSTAuthButton;
 import com.onestap.core.model.domain.boundary.AuthCallback;
-import com.onestap.core.view.ui.widget.OSTButton;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -11,12 +11,12 @@ import com.onestap.OST;
 import com.onestap.auth.model.domain.entities.AuthToken;
 import com.onestap.auth.presenter.contract.AuthContract;
 import com.onestap.auth.service.AuthService;
+import com.onestap.core.helper.LoggerHelper;
 import com.onestap.core.model.domain.boundary.CallbackBoundary;
 import com.onestap.core.model.domain.enumerator.Method;
 import com.onestap.core.model.domain.enumerator.Options;
 import com.onestap.core.model.manager.OSTAuthBaseManager;
 import com.onestap.core.service.NetworkConnection;
-import com.onestap.core.helper.LoggerHelper;
 
 import retrofit2.Call;
 import retrofit2.Callback;

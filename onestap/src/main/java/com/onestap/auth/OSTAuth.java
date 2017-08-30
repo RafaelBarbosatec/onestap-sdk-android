@@ -10,7 +10,7 @@ package com.onestap.auth;
 import android.content.Context;
 import android.content.Intent;
 
-import com.onestap.auth.presenter.AuthPresenter;
+import com.onestap.auth.model.usecase.AuthUseCase;
 import com.onestap.auth.presenter.contract.AuthContract;
 import com.onestap.auth.view.ui.widget.OSTAuthActivity;
 import com.onestap.core.model.domain.boundary.AuthCallback;
@@ -23,34 +23,40 @@ import com.onestap.core.model.domain.boundary.CallbackBoundary;
  * @email mrebelo@stone.com.br
  */
 
-public final class OSTAuth {
+public final class OSTAuth implements AuthContract {
 
     private Context context;
-    private AuthContract.Presenter presenter;
+    private AuthContract.UseCase useCase;
 
     public OSTAuth(Context context) {
         this.context = context;
-        this.presenter = new AuthPresenter(context);
+        this.useCase = new AuthUseCase(context);
     }
 
+    @Override
     public void loadAuthPage(AuthCallback authCallback){
         OSTAuthActivity.authCallback = authCallback;
         context.startActivity(new Intent(context, OSTAuthActivity.class));
     }
 
+    @Override
     public void requestToken(String authCode, CallbackBoundary callbackBoundary) {
-        presenter.requestToken(authCode, callbackBoundary);
+        useCase.requestToken(authCode, callbackBoundary);
     }
 
+    @Override
     public void refreshToken(CallbackBoundary callbackBoundary) {
-        presenter.refreshToken(callbackBoundary);
+        useCase.refreshToken(callbackBoundary);
     }
 
+    @Override
     public void verifyToken(CallbackBoundary callbackBoundary) {
-        presenter.verifyToken(callbackBoundary);
+        useCase.verifyToken(callbackBoundary);
     }
 
+    @Override
     public void revokeToken(final CallbackBoundary callbackBoundary) {
-        presenter.revokeToken(callbackBoundary);
+        useCase.revokeToken(callbackBoundary);
     }
+
 }

@@ -12,7 +12,7 @@
   <corners
       android:radius="100dp"/>
   <solid
-      android:color="@color/green_light"/>
+      android:color="@color/green_normal"/>
   <padding
       android:top="@dimen/top_bottom"
       android:bottom="@dimen/top_bottom"

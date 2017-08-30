@@ -27,7 +27,7 @@ import com.onestap.user.presenter.contract.UserContract;
  * @email mrebelo@stone.com.br
  */
 
-public class UserUseCase extends BaseUseCase implements UserContract.UseCase {
+public final class UserUseCase extends BaseUseCase implements UserContract.UseCase {
 
 
     private UserManager manager;
@@ -46,11 +46,11 @@ public class UserUseCase extends BaseUseCase implements UserContract.UseCase {
     }
 
     @Override
-    public void getUser(CallbackBoundary<AccountResponse> callbackBoundary) {
+    public void getUser(CallbackBoundary<AccountResponse> callbackBoundary, String... categories) {
         if( token == null ){
             callbackBoundary.error(new Throwable("Token not found"));
         } else {
-            manager.getUser(token, callbackBoundary);
+            manager.getUser(callbackBoundary, token, categories);
         }
     }
 }
