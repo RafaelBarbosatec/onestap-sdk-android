@@ -11,10 +11,10 @@ import android.support.annotation.NonNull;
 
 import com.onestap.OST;
 import com.onestap.auth.model.domain.entities.AuthToken;
+import com.onestap.core.helper.LoggerHelper;
 import com.onestap.core.model.domain.boundary.CallbackBoundary;
 import com.onestap.core.model.manager.OSTBaseManager;
 import com.onestap.core.service.NetworkConnection;
-import com.onestap.core.helper.LoggerHelper;
 import com.onestap.user.model.domain.entities.AccountResponse;
 import com.onestap.user.model.domain.entities.PendingProfile;
 import com.onestap.user.model.domain.entities.TempProfile;

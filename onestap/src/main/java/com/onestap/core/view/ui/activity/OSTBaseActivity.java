@@ -15,7 +15,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-
 import com.onestap.onestap.R;
 
 import static android.os.Build.VERSION.SDK_INT;

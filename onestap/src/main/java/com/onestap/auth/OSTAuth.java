@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.onestap.auth.model.usecase.AuthUseCase;
-import com.onestap.auth.presenter.AuthPresenter;
 import com.onestap.auth.presenter.contract.AuthContract;
 import com.onestap.auth.view.ui.widget.OSTAuthActivity;
 import com.onestap.core.model.domain.boundary.AuthCallback;

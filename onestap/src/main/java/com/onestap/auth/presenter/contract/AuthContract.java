@@ -7,8 +7,6 @@
 
 package com.onestap.auth.presenter.contract;
 
-import android.content.Context;
-
 import com.onestap.auth.model.domain.entities.AuthToken;
 import com.onestap.core.model.domain.boundary.AuthCallback;
 import com.onestap.core.model.domain.boundary.CallbackBoundary;

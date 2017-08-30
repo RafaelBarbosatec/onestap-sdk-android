@@ -18,7 +18,6 @@ import com.onestap.core.model.domain.boundary.AuthCallback;
 import com.onestap.core.model.domain.boundary.CallbackBoundary;
 import com.onestap.core.model.domain.enumerator.Options;
 import com.onestap.core.model.manager.FingerPrintManager;
-import com.onestap.core.model.manager.LocalDataManager;
 import com.onestap.core.model.usecase.BaseUseCase;
 
 /**

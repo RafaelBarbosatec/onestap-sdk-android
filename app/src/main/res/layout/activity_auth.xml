@@ -6,54 +6,61 @@
   ~
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.onestap.onestapsdk.AuthActivity">
 
-
-    <EditText
-        android:id="@+id/txt_auth_token"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:focusable="false"
-        android:textSize="16sp"
-        android:minLines="10"
-        />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include layout="@layout/icon_onestap_brand" />
 
-    <com.onestap.core.view.ui.widget.OSTButton
-        android:id="@+id/btn_verify_token"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Verify Token"
-        android:layout_margin="@dimen/magin_small"
-        />
+        <EditText
+            android:id="@+id/txt_auth_token"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:textSize="16sp"
+            android:minLines="10"
+            />
 
-    <com.onestap.core.view.ui.widget.OSTButton
-        android:id="@+id/btn_refresh_token"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Refresh Token"
-        android:layout_margin="@dimen/magin_small"
-        />
+        <com.onestap.core.view.ui.widget.OSTButton
+            android:id="@+id/btn_verify_token"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Verify Token"
+            android:layout_margin="@dimen/magin_small"
+            />
 
-    <com.onestap.core.view.ui.widget.OSTButton
-        android:id="@+id/btn_revoke_token"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Revoke Token"
-        android:layout_margin="@dimen/magin_small"
-        />
+        <com.onestap.core.view.ui.widget.OSTButton
+            android:id="@+id/btn_refresh_token"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Refresh Token"
+            android:layout_margin="@dimen/magin_small"
+            />
 
-    <com.onestap.core.view.ui.widget.OSTButton
-        android:id="@+id/btn_user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="User"
-        android:layout_margin="@dimen/magin_small"
-        />
+        <com.onestap.core.view.ui.widget.OSTButton
+            android:id="@+id/btn_revoke_token"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Revoke Token"
+            android:layout_margin="@dimen/magin_small"
+            />
 
-</LinearLayout>
+        <com.onestap.core.view.ui.widget.OSTButton
+            android:id="@+id/btn_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="User"
+            android:layout_margin="@dimen/magin_small"
+            />
+
+    </LinearLayout>
+
+
+
+</ScrollView>
