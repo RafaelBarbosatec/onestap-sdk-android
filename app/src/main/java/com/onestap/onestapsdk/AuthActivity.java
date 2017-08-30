@@ -35,7 +35,6 @@ public class AuthActivity extends AppCompatActivity {
     OSTButton btnUser;
 
 
-
     @Override
     protected void onStart() {
         super.onStart();

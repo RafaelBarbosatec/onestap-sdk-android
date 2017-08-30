@@ -27,7 +27,7 @@ import com.onestap.user.presenter.contract.UserContract;
  * @email mrebelo@stone.com.br
  */
 
-public class UserUseCase extends BaseUseCase implements UserContract.UseCase {
+public final class UserUseCase extends BaseUseCase implements UserContract.UseCase {
 
 
     private UserManager manager;
