@@ -34,7 +34,6 @@ public class OSTAuthActivity extends OSTBaseActivity implements AuthContract.Vie
         presenter = new AuthPresenter(this);
         presenter.attachView(this);
         if (uri != null) {
-            showProgress();
             String authCode = uri.getQueryParameter("code");
             presenter.loadCredentials(authCode);
         } else {
