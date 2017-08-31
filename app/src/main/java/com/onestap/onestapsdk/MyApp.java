@@ -37,13 +37,13 @@ public class MyApp extends Application {
         super.onCreate();
 
         OSTConfiguration config = new OSTConfiguration();
-        config.setClientId("CLIENT_ID");
-        config.setClientSecret("CLIENT_SECRET");
-        config.setHost("HOST");
-        config.setSchema("SCHEMA");
-        config.setFingerPrintID("FINGERPRINT_ID");
-//        config.setEnvironment(ENVIRONMENT);  OSTEnvironment.SANDBOX or OSTEnvironment.PRODUCTION
+        config.setClientId("432B08E5-ACDA-4AD0-976F-CC5C323B2A1D");
+        config.setClientSecret("FC3E9D34-978B-483B-9CC0-462DFB82A75B");
+        config.setHost("onestap");
+        config.setSchema("onestap");
+        config.setFingerPrintID("c470458e-7845-4380-a5db-e7e28548c243");
 
+        config.setEnvironment(OSTEnvironment.SANDBOX);
         config.setTempProfile(feedTempProfile()); // READ THE DOCUMENTATION
 
         OST.initializer(MyApp.this, config);
