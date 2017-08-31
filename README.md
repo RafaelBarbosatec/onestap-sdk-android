@@ -246,7 +246,14 @@ Para buscar os dados dos usuário, basta executar o método `getUser` com os res
 
 ```java
 
-    String[] categories = {"documents", "addresses", "emails", "personaldata", "phones"};
+    String[] categories = {
+            CategoryEnum.DOCUMENTS.name(),
+            CategoryEnum.ADDRESSES.name(),
+            CategoryEnum.EMAILS.name(),
+            CategoryEnum.PERSONALDATA.name(),
+            CategoryEnum.PHONES.name(),
+            CategoryEnum.VEHICLES.name()
+    };
 
     new OSTUser(this).getUser(new CallbackBoundary<AccountResponse>() {
             @Override
