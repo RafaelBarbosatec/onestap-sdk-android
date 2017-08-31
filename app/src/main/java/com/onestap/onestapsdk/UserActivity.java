@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 import com.google.gson.Gson;
 import com.onestap.core.model.domain.boundary.CallbackBoundary;
+import com.onestap.core.model.domain.enumerator.CategoryEnum;
 import com.onestap.core.view.ui.widget.OSTButton;
 import com.onestap.user.OSTUser;
 import com.onestap.user.model.domain.entities.AccountResponse;
@@ -28,12 +29,22 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String[] categories = {"documents", "addresses", "emails", "personaldata", "phones"};
+                String[] categories = {
+                        CategoryEnum.DOCUMENTS.name(),
+                        CategoryEnum.ADDRESSES.name(),
+                        CategoryEnum.EMAILS.name(),
+                        CategoryEnum.PERSONALDATA.name(),
+                        CategoryEnum.PHONES.name(),
+                        CategoryEnum.VEHICLES.name()
+                };
 
                 new OSTUser(UserActivity.this).getUser(new CallbackBoundary<AccountResponse>() {
                     @Override
                     public void success(AccountResponse response) {
-                        editUser.setText(new Gson().toJson(response.getAccount()));
+                        String json = new Gson().toJson(response.getAccount());
+                        editUser.setText(json);
+
+                        Log.i(TAG, json);
                     }
 
                     @Override

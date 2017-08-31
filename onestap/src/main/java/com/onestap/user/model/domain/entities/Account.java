@@ -38,6 +38,8 @@ public class Account {
     private List<Address> addresses = null;
     @SerializedName("documents")
     private List<Document> documents = null;
+    @SerializedName("vehicles")
+    private List<Vehicle> vehicles = null;
 
     public String getAccountKey() {
         return accountKey;
@@ -111,4 +113,11 @@ public class Account {
         this.documents = documents;
     }
 
+    public List<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles = vehicles;
+    }
 }
