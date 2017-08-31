@@ -68,6 +68,7 @@ public class OSTAuthActivity extends OSTBaseActivity implements AuthContract.Vie
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(OST.getInstance().getLoginUrl()));
         startActivity(intent);
+        finish();
     }
 
     @Override

@@ -43,7 +43,6 @@ public class MyApp extends Application {
         config.setSchema("SCHEMA");
         config.setFingerPrintID("FINGERPRINT_ID");
 //        config.setEnvironment(ENVIRONMENT);  OSTEnvironment.SANDBOX or OSTEnvironment.PRODUCTION
-
         config.setTempProfile(feedTempProfile()); // READ THE DOCUMENTATION
 
         OST.initializer(MyApp.this, config);
