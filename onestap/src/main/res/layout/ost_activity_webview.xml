@@ -18,5 +18,5 @@
     android:id="@+id/webview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.onestap.core.view.ui.activity.WebviewActivity" />
+    tools:context="com.onestap.core.view.ui.activity.OSTWebviewActivity" />
 

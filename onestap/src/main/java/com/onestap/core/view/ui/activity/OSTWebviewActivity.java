@@ -27,13 +27,13 @@ import com.onestap.onestap.R;
  * This Activity is used as a fallback when there is no browser installed that supports
  * Chrome Custom Tabs
  */
-public class WebviewActivity extends AppCompatActivity {
+public class OSTWebviewActivity extends AppCompatActivity {
     public static final String EXTRA_URL = "extra.url";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_webview);
+        setContentView(R.layout.ost_activity_webview);
         String url = getIntent().getStringExtra(EXTRA_URL);
         WebView webView = (WebView)findViewById(R.id.webview);
         webView.setWebViewClient(new WebViewClient());

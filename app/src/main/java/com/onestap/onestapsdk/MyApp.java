@@ -42,7 +42,14 @@ public class MyApp extends Application {
         config.setHost("HOST");
         config.setSchema("SCHEMA");
         config.setFingerPrintID("FINGERPRINT_ID");
+
 //        config.setEnvironment(ENVIRONMENT);  OSTEnvironment.SANDBOX or OSTEnvironment.PRODUCTION
+//        config.setColorPrimary(R.color.colorPrimary);
+//        config.setColorPrimaryDark(R.color.colorPrimaryDark);
+//        config.setColorAccent(R.color.colorAccent);
+
+        config.setEnvironment(OSTEnvironment.SANDBOX);
+
         config.setTempProfile(feedTempProfile()); // READ THE DOCUMENTATION
 
         OST.initializer(MyApp.this, config);
