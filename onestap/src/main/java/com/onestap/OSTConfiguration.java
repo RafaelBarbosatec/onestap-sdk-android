@@ -8,6 +8,7 @@
 package com.onestap;
 
 import com.onestap.core.model.domain.enumerator.OSTEnvironment;
+import com.onestap.onestap.R;
 import com.onestap.user.model.domain.entities.TempProfile;
 
 /**
@@ -30,6 +31,10 @@ public final class OSTConfiguration {
     private TempProfile tempProfile;
 
     private OSTEnvironment environment;
+
+    private int colorPrimary = R.color.green_normal;
+    private int colorPrimaryDark = R.color.green_dark;
+    private int colorAccent = R.color.gray_light;
 
 
     public OSTConfiguration() {
@@ -90,6 +95,19 @@ public final class OSTConfiguration {
         return tempProfile;
     }
 
+
+    public int getColorPrimary() {
+        return colorPrimary;
+    }
+
+    public int getColorPrimaryDark() {
+        return colorPrimaryDark;
+    }
+
+    public int getColorAccent() {
+        return colorAccent;
+    }
+
     /*****
 
      SETTERS
@@ -129,7 +147,16 @@ public final class OSTConfiguration {
         this.environment = environment;
     }
 
+    public void setColorPrimary(int colorPrimary) {
+        this.colorPrimary = colorPrimary;
+    }
 
+    public void setColorPrimaryDark(int colorPrimaryDark) {
+        this.colorPrimaryDark = colorPrimaryDark;
+    }
 
+    public void setColorAccent(int colorAccent) {
+        this.colorAccent = colorAccent;
+    }
 }
 

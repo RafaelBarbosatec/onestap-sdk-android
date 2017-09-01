@@ -17,4 +17,5 @@ import android.webkit.WebViewClient;
  */
 
 public abstract class OSTBaseWebViewClient extends WebViewClient {
+
 }

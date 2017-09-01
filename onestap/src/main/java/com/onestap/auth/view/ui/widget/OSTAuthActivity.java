@@ -10,12 +10,16 @@ package com.onestap.auth.view.ui.widget;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Browser;
+import android.support.customtabs.CustomTabsIntent;
+import android.support.v4.content.ContextCompat;
 import android.webkit.WebViewClient;
 
 import com.onestap.OST;
 import com.onestap.auth.model.domain.entities.AuthToken;
 import com.onestap.auth.presenter.AuthPresenter;
 import com.onestap.auth.presenter.contract.AuthContract;
+import com.onestap.core.helper.CustomTabsHelper;
 import com.onestap.core.model.domain.boundary.AuthCallback;
 import com.onestap.core.view.ui.activity.OSTBaseActivity;
 import com.onestap.onestap.R;
@@ -65,10 +69,24 @@ public class OSTAuthActivity extends OSTBaseActivity implements AuthContract.Vie
 
     @Override
     public void loadWebView() {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(OST.getInstance().getLoginUrl()));
-        startActivity(intent);
+
+        if(CustomTabsHelper.getPackageNameToUse(getApplicationContext()) == null){
+
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.putExtra(Browser.EXTRA_APPLICATION_ID, getApplicationContext().getPackageName());
+            intent.setData(Uri.parse(OST.getInstance().getLoginUrl()));
+            startActivity(intent);
+
+        } else {
+
+            CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
+            intentBuilder.setToolbarColor(ContextCompat.getColor(this, OST.getInstance().getConfiguration().getColorPrimary()));
+            intentBuilder.build().launchUrl(this, Uri.parse(OST.getInstance().getLoginUrl()));
+
+        }
+
         finish();
+
     }
 
     @Override
