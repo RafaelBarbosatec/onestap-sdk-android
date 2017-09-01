@@ -77,6 +77,11 @@ public class MyApp extends Application {
 
         // config.setTempProfile(feedTempProfile()); // READ THE DOCUMENTATION
 
+        // Para personalizar as cores do navegador Google Chrome ao realizar o login, informe os valores abaixo:
+        // config.setColorPrimary(R.color.colorPrimary);
+        // config.setColorPrimaryDark(R.color.colorPrimaryDark);
+        // config.setColorAccent(R.color.colorAccent);
+        
 
         OST.initializer(App.this, config);
 
