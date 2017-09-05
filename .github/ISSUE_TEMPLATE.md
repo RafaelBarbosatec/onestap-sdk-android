@@ -1,17 +1,30 @@
-## Comportamento esperado
+<!--
 
+Colocar  na label da issue um ou mais itens abaixo.
+[#{bug}|{enhancement}|{documentation}{fire}]
 
-## Comportamento atual
+Título: Título bem explicado.
 
+Para mais informações:
+https://github.com/stone-payments/onestap-sdk-android/blob/master/CONTRIBUTING.md
 
-## Como reproduzir o problema
+-->
 
-  1.
-  1.
-  1.
+# Qual sugestão/dúvida/problema?
+  
+- Exemplo 1.
+- Exemplo 2.
 
-## Especificações
+# Como chego no(a) sugestão/problema?
 
-  - Versão da SDK:
-  - Versão do Android:
+- Exemplos.
 
+# Qual é o comportamente esperado?
+
+- Exemplos.
+
+# Especificações:
+
+- Versão da SDK:
+
+- Versão do Android:
