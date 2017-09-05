@@ -36,6 +36,7 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
 
+
         OSTConfiguration config = new OSTConfiguration();
         config.setClientId("CLIENT_ID");
         config.setClientSecret("CLIENT_SECRET");
@@ -43,12 +44,11 @@ public class MyApp extends Application {
         config.setSchema("SCHEMA");
         config.setFingerPrintID("FINGERPRINT_ID");
 
-//        config.setEnvironment(ENVIRONMENT);  OSTEnvironment.SANDBOX or OSTEnvironment.PRODUCTION
 //        config.setColorPrimary(R.color.colorPrimary);
 //        config.setColorPrimaryDark(R.color.colorPrimaryDark);
 //        config.setColorAccent(R.color.colorAccent);
 
-        config.setEnvironment(OSTEnvironment.SANDBOX);
+//        config.setEnvironment(ENVIRONMENT);  OSTEnvironment.SANDBOX or OSTEnvironment.PRODUCTION
 
         config.setTempProfile(feedTempProfile()); // READ THE DOCUMENTATION
 
