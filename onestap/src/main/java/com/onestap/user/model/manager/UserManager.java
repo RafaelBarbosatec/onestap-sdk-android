@@ -80,10 +80,9 @@ public final class UserManager extends OSTBaseManager implements UserContract.Ma
             public void onResponse(Call<AccountResponse> call, Response<AccountResponse> response) {
                 if (response.isSuccessful() && response.body().hasSuccess())
                     callbackBoundary.success(response.body());
-                else if (response.body() == null) {
-                    callbackBoundary.error(new Throwable("Unknow error"));
-                } else
-                    callbackBoundary.error(new Throwable(response.body().toString()));
+                else {
+                    callbackBoundary.error(new Throwable(response.message()));
+                }
             }
 
             @Override

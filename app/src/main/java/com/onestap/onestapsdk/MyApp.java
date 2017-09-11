@@ -12,6 +12,7 @@ import android.app.Application;
 import com.onestap.OST;
 import com.onestap.OSTConfiguration;
 import com.onestap.core.model.domain.enumerator.OSTEnvironment;
+import com.onestap.onestap.*;
 import com.onestap.user.model.domain.entities.Address;
 import com.onestap.user.model.domain.entities.Document;
 import com.onestap.user.model.domain.entities.Email;
@@ -35,13 +36,12 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         OSTConfiguration config = new OSTConfiguration();
-        config.setClientId("432B08E5-ACDA-4AD0-976F-CC5C323B2A1D");
-        config.setClientSecret("FC3E9D34-978B-483B-9CC0-462DFB82A75B");
+        config.setClientId(BuildConfig.CLIENT_ID);
+        config.setClientSecret(BuildConfig.CLIENT_SECRET);
+        config.setFingerPrintID(BuildConfig.FINGERPRINT_ID);
         config.setHost("onestap");
         config.setSchema("onestap");
-        config.setFingerPrintID("c470458e-7845-4380-a5db-e7e28548c243");
 
         config.setColorPrimary(R.color.colorPrimary);
         config.setColorPrimaryDark(R.color.colorPrimaryDark);
@@ -49,7 +49,7 @@ public class MyApp extends Application {
 
         config.setEnvironment(OSTEnvironment.SANDBOX);
 
-//        config.setTempProfile(feedTempProfile()); // READ THE DOCUMENTATION
+        config.setTempProfile(feedTempProfile()); // READ THE DOCUMENTATION
 
         OST.initializer(MyApp.this, config);
     }

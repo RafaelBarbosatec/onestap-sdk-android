@@ -47,8 +47,10 @@ public class NetworkConnection {
                 Request request = chain.request();
                 Response response = chain.proceed(request);
 
-                String requestKey = response.header("requestKey");
-                LoggerHelper.debug(String.format("REQUEST KEY: %s", requestKey));
+                String urlRequest = request.url().toString();
+                String keyResponse = response.header("requestKey");
+
+                LoggerHelper.debug(String.format("{ \n url: %1s, \n key: %2s \n }",  urlRequest, keyResponse));
 
                 return response;
             }

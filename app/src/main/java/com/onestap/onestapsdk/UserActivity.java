@@ -11,6 +11,7 @@ import com.onestap.core.model.domain.boundary.CallbackBoundary;
 import com.onestap.core.model.domain.enumerator.CategoryEnum;
 import com.onestap.core.view.ui.widget.OSTButton;
 import com.onestap.user.OSTUser;
+import com.onestap.user.model.domain.entities.Account;
 import com.onestap.user.model.domain.entities.AccountResponse;
 
 public class UserActivity extends AppCompatActivity {
@@ -41,6 +42,7 @@ public class UserActivity extends AppCompatActivity {
                 new OSTUser(UserActivity.this).getUser(new CallbackBoundary<AccountResponse>() {
                     @Override
                     public void success(AccountResponse response) {
+
                         String json = new Gson().toJson(response.getAccount());
                         editUser.setText(json);
 

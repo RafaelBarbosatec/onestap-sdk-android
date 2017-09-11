@@ -19,6 +19,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+
+
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    def CLIENT_ID =   properties.ClientId ?: '"Define Client id"';
+    def CLIENT_SECRET = properties.ClientSecret ?: '"Define Client secret"';
+    def FINGERPRINT_ID = properties.FingerPrintID ?: '"Define Fingerprint id"';
+
+
+    android.buildTypes.each { type ->
+        type.buildConfigField 'String', 'CLIENT_ID', CLIENT_ID
+        type.buildConfigField 'String', 'CLIENT_SECRET', CLIENT_SECRET
+        type.buildConfigField 'String', 'FINGERPRINT_ID', FINGERPRINT_ID
+    }
 }
 
 dependencies {
