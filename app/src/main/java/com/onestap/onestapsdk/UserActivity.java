@@ -52,7 +52,6 @@ public class UserActivity extends AppCompatActivity {
                     @Override
                     public void error(Throwable e) {
                         Log.e(TAG, e.getMessage());
-                        e.printStackTrace();
                     }
                 }, categories);
             }
@@ -68,5 +67,6 @@ public class UserActivity extends AppCompatActivity {
         editUser = (EditText) findViewById(R.id.edit_user_json);
         btnGetUser = (OSTButton) findViewById(R.id.btn_get_user);
     }
+
 
 }

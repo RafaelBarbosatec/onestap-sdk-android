@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 
 import com.onestap.OST;
 import com.onestap.auth.model.domain.entities.AuthToken;
+import com.onestap.core.exceptions.GlobalException;
 import com.onestap.core.helper.LoggerHelper;
 import com.onestap.core.model.domain.boundary.CallbackBoundary;
 import com.onestap.core.model.manager.OSTBaseManager;
@@ -20,6 +21,8 @@ import com.onestap.user.model.domain.entities.PendingProfile;
 import com.onestap.user.model.domain.entities.TempProfile;
 import com.onestap.user.presenter.contract.UserContract;
 import com.onestap.user.service.UserService;
+
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,7 +35,7 @@ import retrofit2.Response;
  * @email mrebelo@stone.com.br
  */
 
-public final class UserManager extends OSTBaseManager implements UserContract.Manager {
+public class UserManager extends OSTBaseManager implements UserContract.Manager {
 
     private UserService service;
 
@@ -52,11 +55,12 @@ public final class UserManager extends OSTBaseManager implements UserContract.Ma
                 if (response.isSuccessful() && response.body().hasSuccess()) {
                     OST.getInstance().getConfiguration().setDataKey(response.body().getDataKey());
                     callbackBoundary.success(response.body());
-
-                } else if (response.body() == null) {
-                    callbackBoundary.error(new Throwable("Unknow error"));
                 } else {
-                    callbackBoundary.error(new Throwable(response.body().toString()));
+                    try {
+                        callbackBoundary.error(new GlobalException(response.errorBody().string()));
+                    } catch (IOException e) {
+                        callbackBoundary.error(e);
+                    }
                 }
             }
 
@@ -72,7 +76,6 @@ public final class UserManager extends OSTBaseManager implements UserContract.Ma
     @Override
     public void getUser(final CallbackBoundary<AccountResponse> callbackBoundary, AuthToken token, String... categories) {
         super.callbackBoundary(callbackBoundary);
-
         final String authorization = "Bearer " + token.getAccessToken();
 
         service.getUser(authorization, categories).enqueue(new Callback<AccountResponse>() {
@@ -81,7 +84,11 @@ public final class UserManager extends OSTBaseManager implements UserContract.Ma
                 if (response.isSuccessful() && response.body().hasSuccess())
                     callbackBoundary.success(response.body());
                 else {
-                    callbackBoundary.error(new Throwable(response.message()));
+                    try {
+                        callbackBoundary.error(new GlobalException(response.errorBody().string()));
+                    } catch (IOException e) {
+                        callbackBoundary.error(e);
+                    }
                 }
             }
 
