@@ -5,13 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.onestap.core.model.domain.boundary.CallbackBoundary;
 import com.onestap.core.model.domain.enumerator.CategoryEnum;
 import com.onestap.core.view.ui.widget.OSTButton;
 import com.onestap.user.OSTUser;
-import com.onestap.user.model.domain.entities.Account;
 import com.onestap.user.model.domain.entities.AccountResponse;
 
 public class UserActivity extends AppCompatActivity {
@@ -52,6 +52,7 @@ public class UserActivity extends AppCompatActivity {
                     @Override
                     public void error(Throwable e) {
                         Log.e(TAG, e.getMessage());
+                        Toast.makeText(UserActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }, categories);
             }
