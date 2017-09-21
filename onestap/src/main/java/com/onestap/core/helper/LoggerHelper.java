@@ -25,4 +25,9 @@ public final class LoggerHelper {
     public static void error(Throwable t){
         Log.e(TAG, t.getMessage(), t);
     }
+
+
+    public static void debug(String message){
+        Log.d(TAG, message);
+    }
 }

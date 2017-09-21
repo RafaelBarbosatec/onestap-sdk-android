@@ -7,7 +7,7 @@
 
 package com.onestap.core.model.domain.entities;
 
-class OperationReport {
+public class OperationReport {
 
 protected String field;
 protected String message;
