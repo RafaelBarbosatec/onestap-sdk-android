@@ -10,21 +10,15 @@ https://github.com/stone-payments/onestap-sdk-android/blob/master/CONTRIBUTING.m
 
 -->
 
-# Qual sugestão/dúvida/problema?
+# O que foi feito?
   
-- Exemplo 1.
-- Exemplo 2.
+- Exemplo 1 do porquê foi feito.
+- Exemplo 2 do porquê foi feito.
 
-# Como chego no(a) sugestão/problema?
+# Por que foi feito?
+  
+- Exemplos do porque foi feito.
 
-- Exemplos.
+# Como foi feito?
 
-# Qual é o comportamente esperado?
-
-- Exemplos.
-
-# Especificações:
-
-- Versão da SDK:
-
-- Versão do Android:
+- Exemplos de como foi feito.

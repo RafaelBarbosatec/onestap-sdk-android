@@ -7,7 +7,13 @@
 
 package com.onestap.auth.view.ui.widget;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Browser;
@@ -28,6 +34,11 @@ public class OSTAuthActivity extends OSTBaseActivity implements AuthContract.Vie
 
     public static AuthCallback authCallback;
     private AuthContract.Presenter presenter;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +92,8 @@ public class OSTAuthActivity extends OSTBaseActivity implements AuthContract.Vie
 
             CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
             intentBuilder.setToolbarColor(ContextCompat.getColor(this, OST.getInstance().getConfiguration().getColorPrimary()));
+            intentBuilder.setStartAnimations(this, R.anim.slide_in_left, R.anim.slide_out_left);
+            intentBuilder.setExitAnimations(this, R.anim.slide_in_right, R.anim.slide_out_right);
             intentBuilder.build().launchUrl(this, Uri.parse(OST.getInstance().getLoginUrl()));
 
         }

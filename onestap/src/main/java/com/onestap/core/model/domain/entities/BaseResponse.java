@@ -13,7 +13,7 @@ import java.util.List;
  * Created by ltorres on 19/07/2017.
  */
 
-public abstract class BaseResponse {
+public class BaseResponse {
     protected Boolean success = false;
     protected List<OperationReport> operationReport;
 

@@ -12,6 +12,7 @@ import android.app.Application;
 import com.onestap.OST;
 import com.onestap.OSTConfiguration;
 import com.onestap.core.model.domain.enumerator.OSTEnvironment;
+import com.onestap.onestap.*;
 import com.onestap.user.model.domain.entities.Address;
 import com.onestap.user.model.domain.entities.Document;
 import com.onestap.user.model.domain.entities.Email;
@@ -35,18 +36,16 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         OSTConfiguration config = new OSTConfiguration();
-        config.setClientId("CLIENT_ID");
-        config.setClientSecret("CLIENT_SECRET");
-        config.setHost("HOST");
-        config.setSchema("SCHEMA");
-        config.setFingerPrintID("FINGERPRINT_ID");
+        config.setClientId(BuildConfig.CLIENT_ID);
+        config.setClientSecret(BuildConfig.CLIENT_SECRET);
+        config.setFingerPrintID(BuildConfig.FINGERPRINT_ID);
+        config.setHost("onestap");
+        config.setSchema("onestap");
 
-//        config.setEnvironment(ENVIRONMENT);  OSTEnvironment.SANDBOX or OSTEnvironment.PRODUCTION
-//        config.setColorPrimary(R.color.colorPrimary);
-//        config.setColorPrimaryDark(R.color.colorPrimaryDark);
-//        config.setColorAccent(R.color.colorAccent);
+        config.setColorPrimary(R.color.colorPrimary);
+        config.setColorPrimaryDark(R.color.colorPrimaryDark);
+        config.setColorAccent(R.color.colorAccent);
 
         config.setEnvironment(OSTEnvironment.SANDBOX);
 
