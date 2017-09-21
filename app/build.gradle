@@ -23,7 +23,7 @@ android {
 
 
     Properties properties = new Properties()
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    properties.load(project.rootProject.file('key.properties').newDataInputStream())
 
     def CLIENT_ID =   properties.ClientId ?: '"Define Client id"';
     def CLIENT_SECRET = properties.ClientSecret ?: '"Define Client secret"';
