@@ -110,7 +110,6 @@ Com isso, por padrão seu app vai inicialmente instanciar a classe `MyApp`.
 
 ```
 
-
 Após a inicialização, se for passado o fingerPrintID, o fingerPrintSessionId será setado e você poderá acessá-lo:
 
 ```java
@@ -238,6 +237,16 @@ Para revogar o Token do usuário, basta chamar o método `revokeToken`.
                  // ...
             }
         });
+
+```
+
+### Recuperando o token
+
+Após o login, o token estará disponível e poderá ser acessado através da instância da classe `OST.getInstance()`.
+
+```java
+
+OST.getInstance().getToken()
 
 ```
 
