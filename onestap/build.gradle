@@ -7,7 +7,7 @@ version '0.1.0'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 16
@@ -60,7 +60,7 @@ android {
 
 ext {
     android_version = '26.0.1'
-    retrofit_version = '2.3.+'
+    retrofit_version = '2.3.0'
     converter_gson_version = '2.3.+'
     glide_version = '4.0.0-RC1'
     okhttp_version = '3.9.0'
@@ -75,16 +75,14 @@ dependencies {
     })
 
 
-    compile "com.android.support:appcompat-v7:$android_version"
-    compile "com.android.support:recyclerview-v7:$android_version"
-    compile "com.android.support:design:$android_version"
-    compile "com.android.support:customtabs:$android_version"
-    compile "com.squareup.retrofit2:retrofit:$retrofit_version"
-    compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.android.support:appcompat-v7:$android_version"
+    implementation "com.android.support:recyclerview-v7:$android_version"
+    implementation "com.android.support:design:$android_version"
+    implementation "com.android.support:customtabs:$android_version"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
-
-    compile "com.github.bumptech.glide:glide:$glide_version"
-
 
     compile fileTree(dir: 'libs', include: '*.jar')
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
