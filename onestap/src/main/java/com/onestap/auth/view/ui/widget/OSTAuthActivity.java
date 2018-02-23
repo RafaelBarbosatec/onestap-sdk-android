@@ -94,7 +94,9 @@ public class OSTAuthActivity extends OSTBaseActivity implements AuthContract.Vie
             intentBuilder.setToolbarColor(ContextCompat.getColor(this, OST.getInstance().getConfiguration().getColorPrimary()));
             intentBuilder.setStartAnimations(this, R.anim.slide_in_left, R.anim.slide_out_left);
             intentBuilder.setExitAnimations(this, R.anim.slide_in_right, R.anim.slide_out_right);
-            intentBuilder.build().launchUrl(this, Uri.parse(OST.getInstance().getLoginUrl()));
+            CustomTabsIntent customTabsIntent = intentBuilder.build();
+            customTabsIntent.intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            customTabsIntent.launchUrl(this, Uri.parse(OST.getInstance().getLoginUrl()));
 
         }
 
